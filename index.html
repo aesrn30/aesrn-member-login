@@ -2,6 +2,15 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>African Emerging Scholars Research Network (AESRN)</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png" type="image/png">
+<link itemprop="image" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+<meta property="og:logo" content="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+<meta name="twitter:logo" content="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-16x16.png">
+<link rel="manifest" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/site.webmanifest">
     <script async src="https://tally.so/widgets/embed.js"></script>
     <style type="text/css">
       html { margin: 0; height: 100%; overflow: hidden; }
@@ -13,40 +22,183 @@
         flex-direction: column; 
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: #f5f7fa;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
+      
+      /* Dark mode styles */
+      body.dark-mode {
+        background: #121212;
+        color: #e0e0e0;
+      }
+      
+      body.dark-mode .footer {
+        background: #1e1e1e;
+        border-top: 1px solid #333;
+        color: #b0b0b0;
+      }
+      
+      body.dark-mode .footer-email {
+        color: #90caf9;
+      }
+      
+      body.dark-mode .footer-email:hover {
+        color: #64b5f6;
+      }
+      
+      body.dark-mode .user-name {
+        color: #bb86fc;
+      }
+      
+      body.dark-mode .footer-copyright {
+        border-top: 1px solid #333;
+      }
+      
+      body.dark-mode .login-container {
+        background: linear-gradient(135deg, #0d155e 0%, #1c236d 100%);
+      }
+      
+      body.dark-mode .login-box {
+        background: #1e1e1e;
+        color: #e0e0e0;
+      }
+      
+      body.dark-mode .login-logo {
+        color: #bb86fc;
+      }
+      
+      body.dark-mode .login-title {
+        color: #ffffff;
+      }
+      
+      body.dark-mode .login-subtitle {
+        color: #b0b0b0;
+      }
+      
+      body.dark-mode .form-label {
+        color: #e0e0e0;
+      }
+      
+      body.dark-mode .form-input {
+        background: #2d2d2d;
+        border-color: #444;
+        color: #ffffff;
+      }
+      
+      body.dark-mode .form-input:focus {
+        border-color: #bb86fc;
+        background: #333;
+        box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.1);
+      }
+      
+      body.dark-mode .login-button {
+        background: linear-gradient(135deg, #bb86fc 0%, #985eff 100%);
+      }
+      
+      body.dark-mode .login-button:hover {
+        background: linear-gradient(135deg, #a66efb 0%, #8745ff 100%);
+        box-shadow: 0 4px 12px rgba(187, 134, 252, 0.2);
+      }
+      
+      body.dark-mode .security-note {
+        color: #999;
+        border-top: 1px solid #333;
+      }
+      
+      body.dark-mode .error-message {
+        background: #422;
+        color: #ff8a80;
+        border-left: 4px solid #d32f2f;
+      }
+      
+      body.dark-mode .attempts-warning {
+        background: #332200;
+        color: #ffb74d;
+        border-left: 4px solid #f57c00;
+      }
+      
+      body.dark-mode .logout-button {
+        background: #d32f2f;
+      }
+      
+      body.dark-mode .logout-button:hover {
+        background: #b71c1c;
+      }
+      
+      body.dark-mode .system-info-toggle {
+        color: #90caf9;
+      }
+      
+      body.dark-mode .system-info-toggle:hover {
+        color: #64b5f6;
+      }
+      
+      body.dark-mode .modal-content {
+        background: #1e1e1e;
+        color: #e0e0e0;
+      }
+      
+      body.dark-mode .modal-header {
+        border-bottom: 1px solid #333;
+      }
+      
+      body.dark-mode .close-button {
+        color: #e0e0e0;
+      }
+      
+      body.dark-mode .close-button:hover {
+        color: #ffffff;
+        background: #333;
+      }
+      
       .footer {
         background: #f8f9fa;
-        padding: 20px;
-        text-align: center;
+        padding: 15px 20px;
         border-top: 1px solid #e9ecef;
         color: #6c757d;
         font-size: 14px;
         line-height: 1.5;
         z-index: 10;
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
       }
-      .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+      .footer-left {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 15px;
       }
-      .footer a {
+      .footer-right {
+        text-align: right;
+      }
+      .footer-email {
         color: #2c3e50;
         text-decoration: none;
+        font-weight: 500;
         transition: color 0.3s ease;
       }
-      .footer a:hover {
+      .footer-email:hover {
         color: #1a252f;
         text-decoration: underline;
       }
-      .footer-logo {
-        font-weight: 600;
+      .user-name {
         color: #2c3e50;
-        margin-bottom: 8px;
+        font-weight: 600;
+        transition: color 0.3s ease;
       }
       .footer-copyright {
+        width: 100%;
+        text-align: center;
         font-size: 13px;
         opacity: 0.9;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #e9ecef;
+        transition: border-color 0.3s ease;
       }
       .form-container {
         flex: 1;
@@ -63,6 +215,7 @@
         align-items: center;
         padding: 20px;
         background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+        transition: background 0.3s ease;
       }
       
       .login-box {
@@ -72,6 +225,7 @@
         width: 100%;
         max-width: 400px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
       }
       
       .login-header {
@@ -85,6 +239,7 @@
         color: #1a237e;
         margin-bottom: 15px;
         letter-spacing: 0.5px;
+        transition: color 0.3s ease;
       }
       
       .login-title {
@@ -92,12 +247,14 @@
         font-weight: 600;
         color: #2c3e50;
         margin-bottom: 8px;
+        transition: color 0.3s ease;
       }
       
       .login-subtitle {
         color: #666;
         font-size: 14px;
         line-height: 1.4;
+        transition: color 0.3s ease;
       }
       
       .form-group {
@@ -110,6 +267,7 @@
         color: #444;
         font-weight: 500;
         font-size: 14px;
+        transition: color 0.3s ease;
       }
       
       .form-input {
@@ -121,6 +279,7 @@
         transition: all 0.3s ease;
         box-sizing: border-box;
         background: #fafafa;
+        transition: all 0.3s ease;
       }
       
       .form-input:focus {
@@ -176,6 +335,7 @@
         background: #ffebee;
         border-radius: 6px;
         border-left: 4px solid #d32f2f;
+        transition: all 0.3s ease;
       }
       
       .attempts-warning {
@@ -188,6 +348,7 @@
         background: #fff3e0;
         border-radius: 6px;
         border-left: 4px solid #f57c00;
+        transition: all 0.3s ease;
       }
       
       .security-note {
@@ -197,15 +358,626 @@
         margin-top: 20px;
         padding-top: 20px;
         border-top: 1px solid #eee;
+        transition: all 0.3s ease;
+      }
+      
+      /* Dark Mode Toggle Styles */
+      .dark-mode-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0 0;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+      
+      body.dark-mode .dark-mode-toggle {
+        border-top: 1px solid #333;
+      }
+      
+      .toggle-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #666;
+        transition: color 0.3s ease;
+      }
+      
+      body.dark-mode .toggle-label {
+        color: #b0b0b0;
+      }
+      
+      .toggle-slider {
+        position: relative;
+        width: 50px;
+        height: 26px;
+        background-color: #ccc;
+        border-radius: 34px;
+        transition: background-color 0.3s ease;
+      }
+      
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+      }
+      
+      .toggle-input {
+        display: none;
+      }
+      
+      .toggle-input:checked + .toggle-slider {
+        background-color: #4CAF50;
+      }
+      
+      .toggle-input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+      }
+      
+      .toggle-text {
+        font-weight: 500;
+        min-width: 70px;
+      }
+      
+      /* Logout Button */
+      .logout-button {
+        background: #d32f2f;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+      }
+      
+      .logout-button:hover {
+        background: #b71c1c;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(211, 47, 47, 0.2);
+      }
+      
+      /* System Information Toggle */
+      .system-info-toggle {
+        display: block;
+        text-align: center;
+        margin: 20px 0 0;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        cursor: pointer;
+        font-size: 13px;
+        color: #666;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      
+      body.dark-mode .system-info-toggle {
+        border-top: 1px solid #333;
+        color: #b0b0b0;
+      }
+      
+      .system-info-toggle:hover {
+        color: #1a237e;
+        text-decoration: underline;
+      }
+      
+      body.dark-mode .system-info-toggle:hover {
+        color: #90caf9;
+      }
+      
+      .system-info-toggle span {
+        font-weight: 500;
+        margin-left: 5px;
+      }
+      
+      /* System Information Modal */
+      .system-info-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1200;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(2px);
+        padding: 20px;
+      }
+      
+      .system-info-content {
+        background: white;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 700px;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        animation: modalFadeIn 0.3s ease;
+      }
+      
+      body.dark-mode .system-info-content {
+        background: #1e1e1e;
+        color: #e0e0e0;
+      }
+      
+      @keyframes modalFadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .system-info-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 30px 20px;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      body.dark-mode .system-info-header {
+        border-bottom: 1px solid #333;
+      }
+      
+      .system-info-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a237e;
+        margin: 0;
+      }
+      
+      body.dark-mode .system-info-title {
+        color: #bb86fc;
+      }
+      
+      .system-info-close {
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: #6c757d;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      
+      .system-info-close:hover {
+        background: #f8f9fa;
+        color: #343a40;
+      }
+      
+      body.dark-mode .system-info-close:hover {
+        background: #333;
+        color: #ffffff;
+      }
+      
+      .system-info-body {
+        padding: 25px 30px;
+      }
+      
+      .info-section {
+        margin-bottom: 25px;
+      }
+      
+      .info-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .info-section h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #e9ecef;
+      }
+      
+      body.dark-mode .info-section h3 {
+        color: #ffffff;
+        border-bottom: 2px solid #333;
+      }
+      
+      .info-section p {
+        margin: 0 0 12px 0;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+      
+      .info-section ul {
+        margin: 12px 0;
+        padding-left: 20px;
+      }
+      
+      .info-section li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      
+      .info-highlight {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border-left: 4px solid #1a237e;
+      }
+      
+      body.dark-mode .info-highlight {
+        background: #2d2d2d;
+        border-left: 4px solid #bb86fc;
+      }
+      
+      .authorized-users-link {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 8px 16px;
+        background: #1a237e;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 13px;
+        transition: all 0.3s ease;
+      }
+      
+      body.dark-mode .authorized-users-link {
+        background: #bb86fc;
+        color: #121212;
+      }
+      
+      .authorized-users-link:hover {
+        background: #0d155e;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(26, 35, 126, 0.2);
+      }
+      
+      body.dark-mode .authorized-users-link:hover {
+        background: #a66efb;
+      }
+      
+      .copyright-info {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e9ecef;
+        font-style: italic;
+        color: #666;
+        font-size: 13px;
+      }
+      
+      body.dark-mode .copyright-info {
+        color: #b0b0b0;
+        border-top: 1px solid #333;
+      }
+      
+      /* Scrollbar Styling for Modals */
+      .system-info-content::-webkit-scrollbar,
+      .modal-content::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      .system-info-content::-webkit-scrollbar-track,
+      .modal-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+      
+      body.dark-mode .system-info-content::-webkit-scrollbar-track,
+      body.dark-mode .modal-content::-webkit-scrollbar-track {
+        background: #2d2d2d;
+      }
+      
+      .system-info-content::-webkit-scrollbar-thumb,
+      .modal-content::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+      }
+      
+      body.dark-mode .system-info-content::-webkit-scrollbar-thumb,
+      body.dark-mode .modal-content::-webkit-scrollbar-thumb {
+        background: #555;
+      }
+      
+      .system-info-content::-webkit-scrollbar-thumb:hover,
+      .modal-content::-webkit-scrollbar-thumb:hover {
+        background: #a1a1a1;
+      }
+      
+      body.dark-mode .system-info-content::-webkit-scrollbar-thumb:hover,
+      body.dark-mode .modal-content::-webkit-scrollbar-thumb:hover {
+        background: #777;
+      }
+      
+      /* Modal for authorized users */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1300;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .modal-content {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        animation: modalFadeIn 0.3s ease;
+      }
+      
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      .modal-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0;
+      }
+      
+      .close-button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #6c757d;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      
+      .close-button:hover {
+        background: #f8f9fa;
+        color: #343a40;
+      }
+      
+      .users-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .users-list li {
+        padding: 10px 15px;
+        margin-bottom: 8px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        border-left: 4px solid #1a237e;
+        font-family: monospace;
+        font-size: 13px;
+      }
+      
+      body.dark-mode .users-list li {
+        background: #2d2d2d;
+        border-left: 4px solid #bb86fc;
+        color: #e0e0e0;
+      }
+      
+      /* Inactivity Warning */
+      .inactivity-warning {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        z-index: 2000;
+        text-align: center;
+        animation: modalFadeIn 0.3s ease;
+      }
+      
+      body.dark-mode .inactivity-warning {
+        background: #1e1e1e;
+        color: #e0e0e0;
+      }
+      
+      .inactivity-timer {
+        font-size: 32px;
+        font-weight: 700;
+        color: #d32f2f;
+        margin: 20px 0;
+        font-family: monospace;
+      }
+      
+      .inactivity-message {
+        margin: 15px 0;
+        color: #666;
+        line-height: 1.5;
+      }
+      
+      body.dark-mode .inactivity-message {
+        color: #b0b0b0;
+      }
+      
+      .keep-active-button {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+      }
+      
+      .keep-active-button:hover {
+        background: #388E3C;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+      }
+      
+      /* Custom Confirmation Dialog */
+      .confirmation-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1500;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(2px);
+      }
+      
+      .confirmation-dialog {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        animation: modalFadeIn 0.3s ease;
+        text-align: center;
+      }
+      
+      body.dark-mode .confirmation-dialog {
+        background: #1e1e1e;
+        color: #e0e0e0;
+      }
+      
+      .confirmation-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #d32f2f;
+      }
+      
+      .confirmation-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+      
+      body.dark-mode .confirmation-title {
+        color: #ffffff;
+      }
+      
+      .confirmation-message {
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 25px;
+        font-size: 15px;
+      }
+      
+      body.dark-mode .confirmation-message {
+        color: #b0b0b0;
+      }
+      
+      .confirmation-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+      
+      .confirm-button {
+        flex: 1;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .confirm-yes {
+        background: #d32f2f;
+        color: white;
+      }
+      
+      .confirm-yes:hover {
+        background: #b71c1c;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+      }
+      
+      .confirm-no {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #ddd;
+      }
+      
+      body.dark-mode .confirm-no {
+        background: #2d2d2d;
+        color: #e0e0e0;
+        border: 1px solid #444;
+      }
+      
+      .confirm-no:hover {
+        background: #e0e0e0;
+        transform: translateY(-1px);
+      }
+      
+      body.dark-mode .confirm-no:hover {
+        background: #3d3d3d;
       }
       
       @media (max-width: 768px) {
         .footer {
-          padding: 15px;
+          padding: 12px 15px;
           font-size: 13px;
+          flex-direction: column;
+          text-align: center;
+          gap: 8px;
+        }
+        .footer-left, .footer-right {
+          text-align: center;
+          width: 100%;
+          justify-content: center;
+        }
+        .footer-left {
+          flex-direction: column;
+          gap: 8px;
+        }
+        .logout-button {
+          margin-left: 0;
+          margin-top: 8px;
         }
         .footer-copyright {
           font-size: 12px;
+          margin-top: 8px;
+          padding-top: 8px;
         }
         .login-box {
           padding: 30px 20px;
@@ -216,6 +988,33 @@
         }
         .login-logo {
           font-size: 20px;
+        }
+        .dark-mode-toggle {
+          margin-top: 15px;
+          padding-top: 15px;
+        }
+        .system-info-toggle {
+          margin-top: 15px;
+          padding-top: 15px;
+        }
+        .system-info-content {
+          width: 95%;
+          max-height: 90vh;
+        }
+        .system-info-header {
+          padding: 20px 20px 15px;
+        }
+        .system-info-body {
+          padding: 20px;
+        }
+        .system-info-title {
+          font-size: 18px;
+        }
+        .confirmation-buttons {
+          flex-direction: column;
+        }
+        .confirm-button {
+          width: 100%;
         }
       }
     </style>
@@ -267,6 +1066,20 @@
             Multiple failed attempts may temporarily restrict access.
           </div>
           
+          <!-- Dark Mode Toggle -->
+          <div class="dark-mode-toggle">
+            <label class="toggle-label">
+              <span class="toggle-text">Dark Mode</span>
+              <input type="checkbox" class="toggle-input" id="darkModeToggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <!-- System Information Toggle -->
+          <a href="#" class="system-info-toggle" id="systemInfoToggle">
+            ℹ️ System Information
+          </a>
+          
           <div class="security-note">
             For security reasons, access is restricted to authorized members only.
           </div>
@@ -288,13 +1101,128 @@
     </div>
     
     <footer class="footer" style="display: none;" id="siteFooter">
-      <div class="footer-content">
-        <div class="footer-logo">African Emerging Scholars Research Network (AESRN)</div>
-        <div class="footer-copyright">
-          Copyright © 2026 African Emerging Scholars Research Network (AESRN). All rights reserved.
+      <div class="footer-left">
+        <div>
+          Logged in as: <span class="user-name" id="userNameDisplay"></span>
         </div>
+        <button class="logout-button" id="logoutButton">Logout</button>
+      </div>
+      <div class="footer-right">
+        Email: <a href="mailto:research.aesrn@yahoo.com" class="footer-email">research.aesrn@yahoo.com</a>
+      </div>
+      <div class="footer-copyright">
+        Copyright © <span id="copyrightYear"></span> African Emerging Scholars Research Network (AESRN). All rights reserved.
       </div>
     </footer>
+    
+    <!-- System Information Modal -->
+    <div class="system-info-modal" id="systemInfoModal">
+      <div class="system-info-content">
+        <div class="system-info-header">
+          <h2 class="system-info-title">System Information</h2>
+          <button class="system-info-close" id="closeSystemInfo">&times;</button>
+        </div>
+        <div class="system-info-body">
+          <div class="info-section">
+            <h3>About This System</h3>
+            <p><strong>Owner:</strong> African Emerging Scholars Research Network (AESRN)</p>
+            <p><strong>Purpose:</strong> Secure portal for authorized members to submit research information and collaborate within the network. This system facilitates the collection and management of research data from emerging scholars across Africa.</p>
+            <p><strong>Access Level:</strong> Restricted to members only.</p>
+          </div>
+          
+          <div class="info-section">
+            <h3>Security Features</h3>
+            <ul>
+              <li><strong>Auto-logout:</strong> Session automatically expires after 5 minutes of inactivity</li>
+              <li><strong>Session Management:</strong> Secure session persistence across page reloads</li>
+              <li><strong>Brute Force Protection:</strong> Temporary lockout after multiple failed login attempts</li>
+              <li><strong>Credential Validation:</strong> Secure server-side validation of user credentials</li>
+              <li><strong>Encrypted Storage:</strong> Local session data encryption</li>
+              <li><strong>Activity Tracking:</strong> Real-time monitoring of user activity</li>
+            </ul>
+          </div>
+          
+          <div class="info-section">
+            <h3>Technical Specifications</h3>
+            <ul>
+              <li><strong>Technology Stack:</strong> HTML5, CSS3, Vanilla JavaScript</li>
+              <li><strong>Responsive Design:</strong> Fully optimized for desktop, tablet, and mobile devices</li>
+              <li><strong>Data Storage:</strong> LocalStorage for session management with expiry</li>
+              <li><strong>Integration:</strong> Tally.so for form data collection and management</li>
+              <li><strong>Cross-Browser:</strong> Compatible with Chrome, Firefox, Safari, Edge</li>
+              <li><strong>Performance:</strong> Optimized for fast loading and smooth interactions</li>
+            </ul>
+          </div>
+          
+          <div class="info-section">
+            <h3>User Management</h3>
+            <p>Access is granted to pre-approved email addresses. The system supports:</p>
+            <ul>
+              <li>Individual user authentication</li>
+              <li>Session persistence for uninterrupted workflow</li>
+              <li>Secure logout with confirmation</li>
+              <li>Activity timeout warnings</li>
+              <li>Dark/light mode preferences</li>
+            </ul>
+          </div>
+          
+          <div class="info-section">
+            <h3>Contact & Support</h3>
+            <p>For technical support, access requests, or system inquiries:</p>
+            <p><strong>Primary Contact:</strong> research.aesrn@yahoo.com</p>
+            <p><strong>Response Time:</strong> Within 24-48 hours during business days</p>
+            <p><strong>Support Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (GMT)</p>
+          </div>
+          
+          <div class="copyright-info">
+            <p>Copyright © <span id="currentYearModal"></span> African Emerging Scholars Research Network (AESRN)</p>
+            <p>All rights reserved. Unauthorized access or distribution is strictly prohibited.</p>
+            <p style="font-size: 11px; margin-top: 10px;">System Version: 2.2 | Last Updated: 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal for Authorized Users -->
+    <div class="modal-overlay" id="usersModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Authorized Users</h3>
+          <button class="close-button" id="closeModal">&times;</button>
+        </div>
+        <p>List of authorized email addresses with access to the system:</p>
+        <ul class="users-list" id="usersList">
+          <!-- Users will be dynamically added here -->
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Inactivity Warning Modal -->
+    <div class="inactivity-warning" id="inactivityWarning">
+      <h3>Session Timeout Warning</h3>
+      <div class="inactivity-timer" id="inactivityTimer">1:00</div>
+      <p class="inactivity-message">
+        Your session will expire due to inactivity. 
+        Click the button below to remain logged in.
+      </p>
+      <button class="keep-active-button" id="keepActiveButton">Keep Me Logged In</button>
+    </div>
+    
+    <!-- Custom Confirmation Dialog -->
+    <div class="confirmation-overlay" id="confirmationDialog">
+      <div class="confirmation-dialog">
+        <div class="confirmation-icon">⚠️</div>
+        <div class="confirmation-title">Confirm Logout</div>
+        <div class="confirmation-message">
+          Are you sure you want to log out?<br>
+          Any unsaved changes in the form may be lost.
+        </div>
+        <div class="confirmation-buttons">
+          <button class="confirm-button confirm-yes" id="confirmLogout">Yes, Logout</button>
+          <button class="confirm-button confirm-no" id="cancelLogout">Cancel</button>
+        </div>
+      </div>
+    </div>
 
     <script>
       // List of allowed email addresses (case-insensitive)
@@ -318,6 +1246,142 @@
       let failedAttempts = 0;
       const maxAttempts = 5;
       
+      // Store current user name
+      let currentUserName = "";
+      let currentUserEmail = "";
+      
+      // Session timeout settings (5 minutes)
+      const SESSION_TIMEOUT = 5 * 60 * 1000; // 5 minutes in milliseconds
+      const WARNING_TIMEOUT = 1 * 60 * 1000; // Show warning 1 minute before logout
+      let logoutTimer;
+      let warningTimer;
+      let lastActivityTime;
+      
+      // Dark mode state
+      let isDarkMode = false;
+      
+      // Function to update copyright year
+      function updateCopyrightYear() {
+        const currentYear = new Date().getFullYear();
+        document.getElementById('copyrightYear').textContent = currentYear;
+        document.getElementById('currentYearModal').textContent = currentYear;
+      }
+      
+      // Function to initialize dark mode from localStorage
+      function initializeDarkMode() {
+        const savedMode = localStorage.getItem('aesrnDarkMode');
+        if (savedMode === 'true') {
+          enableDarkMode();
+        }
+      }
+      
+      // Function to enable dark mode
+      function enableDarkMode() {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').checked = true;
+        isDarkMode = true;
+        localStorage.setItem('aesrnDarkMode', 'true');
+      }
+      
+      // Function to disable dark mode
+      function disableDarkMode() {
+        document.body.classList.remove('dark-mode');
+        document.getElementById('darkModeToggle').checked = false;
+        isDarkMode = false;
+        localStorage.setItem('aesrnDarkMode', 'false');
+      }
+      
+      // Function to toggle dark mode
+      function toggleDarkMode() {
+        if (isDarkMode) {
+          disableDarkMode();
+        } else {
+          enableDarkMode();
+        }
+      }
+      
+      // Function to reset activity timer
+      function resetActivityTimer() {
+        lastActivityTime = Date.now();
+        clearTimeout(logoutTimer);
+        clearTimeout(warningTimer);
+        hideInactivityWarning();
+        
+        // Set warning timer (4 minutes)
+        warningTimer = setTimeout(showInactivityWarning, SESSION_TIMEOUT - WARNING_TIMEOUT);
+        
+        // Set logout timer (5 minutes)
+        logoutTimer = setTimeout(logoutDueToInactivity, SESSION_TIMEOUT);
+      }
+      
+      // Function to show inactivity warning
+      function showInactivityWarning() {
+        document.getElementById('inactivityWarning').style.display = 'block';
+        startCountdown(60); // Start 60 second countdown
+      }
+      
+      // Function to hide inactivity warning
+      function hideInactivityWarning() {
+        document.getElementById('inactivityWarning').style.display = 'none';
+      }
+      
+      // Function to start countdown
+      function startCountdown(seconds) {
+        const timerElement = document.getElementById('inactivityTimer');
+        let remaining = seconds;
+        
+        function updateTimer() {
+          const minutes = Math.floor(remaining / 60);
+          const secs = remaining % 60;
+          timerElement.textContent = `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+          
+          if (remaining <= 0) {
+            clearInterval(countdownInterval);
+            logoutDueToInactivity();
+          } else {
+            remaining--;
+          }
+        }
+        
+        updateTimer();
+        const countdownInterval = setInterval(updateTimer, 1000);
+      }
+      
+      // Function to logout due to inactivity
+      function logoutDueToInactivity() {
+        showCustomAlert('Session Expired', 'Your session has expired due to inactivity. Please log in again.', 'info');
+        logout();
+      }
+      
+      // Function to show custom alert
+      function showCustomAlert(title, message, type = 'info') {
+        const icon = type === 'info' ? 'ℹ️' : type === 'warning' ? '⚠️' : '❌';
+        
+        const alertHTML = `
+          <div class="confirmation-dialog">
+            <div class="confirmation-icon">${icon}</div>
+            <div class="confirmation-title">${title}</div>
+            <div class="confirmation-message">${message}</div>
+            <div class="confirmation-buttons">
+              <button class="confirm-button confirm-no" id="closeAlert">OK</button>
+            </div>
+          </div>
+        `;
+        
+        const overlay = document.getElementById('confirmationDialog');
+        overlay.innerHTML = alertHTML;
+        overlay.style.display = 'flex';
+        
+        document.getElementById('closeAlert').addEventListener('click', function() {
+          overlay.style.display = 'none';
+        });
+      }
+      
+      // Function to handle user activity
+      function trackUserActivity() {
+        resetActivityTimer();
+      }
+      
       // Function to validate login credentials
       function validateLogin(email, password) {
         // Normalize email for case-insensitive comparison
@@ -325,9 +1389,15 @@
         const normalizedPassword = password.trim();
         
         // Check if email is in allowed list
-        const isEmailValid = allowedEmails.some(allowedEmail => 
-          allowedEmail.toLowerCase() === normalizedEmail.toLowerCase()
-        );
+        const isEmailValid = allowedEmails.some(allowedEmail => {
+          if (allowedEmail.toLowerCase() === normalizedEmail.toLowerCase()) {
+            // Extract name from email for display
+            currentUserName = normalizedEmail.split('@')[0];
+            currentUserEmail = normalizedEmail;
+            return true;
+          }
+          return false;
+        });
         
         // Check if password is correct
         const isPasswordValid = normalizedPassword === correctPassword;
@@ -335,18 +1405,91 @@
         return isEmailValid && isPasswordValid;
       }
       
+      // Function to check session on page load
+      function checkSession() {
+        const sessionData = localStorage.getItem('aesrnSession');
+        if (sessionData) {
+          const { email, expiry } = JSON.parse(sessionData);
+          
+          // Check if session is still valid
+          if (Date.now() < expiry) {
+            // Auto-login user
+            currentUserEmail = email;
+            currentUserName = email.split('@')[0];
+            showForm();
+            return true;
+          } else {
+            // Session expired, clear it
+            localStorage.removeItem('aesrnSession');
+          }
+        }
+        return false;
+      }
+      
+      // Function to create new session
+      function createSession() {
+        const expiry = Date.now() + SESSION_TIMEOUT;
+        const sessionData = {
+          email: currentUserEmail,
+          expiry: expiry
+        };
+        localStorage.setItem('aesrnSession', JSON.stringify(sessionData));
+      }
+      
       // Function to show form and hide login
       function showForm() {
+        // Update user name display in footer
+        document.getElementById('userNameDisplay').textContent = currentUserName;
+        
         document.getElementById('loginContainer').style.display = 'none';
         document.getElementById('formContainer').style.display = 'flex';
-        document.getElementById('siteFooter').style.display = 'block';
+        document.getElementById('siteFooter').style.display = 'flex';
         
-        // Clear any stored session data to force re-login on next visit
-        sessionStorage.removeItem('aesrnLoggedIn');
+        // Create session
+        createSession();
         
-        // Also clear any possible localStorage entries
-        localStorage.removeItem('aesrnLoggedIn');
-        localStorage.removeItem('aesrnLoginExpiry');
+        // Start activity tracking
+        resetActivityTimer();
+        document.addEventListener('mousemove', trackUserActivity);
+        document.addEventListener('keydown', trackUserActivity);
+        document.addEventListener('click', trackUserActivity);
+      }
+      
+      // Function to logout
+      function logout() {
+        // Clear session data
+        localStorage.removeItem('aesrnSession');
+        sessionStorage.clear();
+        
+        // Clear timers
+        clearTimeout(logoutTimer);
+        clearTimeout(warningTimer);
+        hideInactivityWarning();
+        
+        // Remove activity listeners
+        document.removeEventListener('mousemove', trackUserActivity);
+        document.removeEventListener('keydown', trackUserActivity);
+        document.removeEventListener('click', trackUserActivity);
+        
+        // Reset to login screen
+        document.getElementById('loginContainer').style.display = 'flex';
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('siteFooter').style.display = 'none';
+        
+        // Clear form inputs
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('email').focus();
+        
+        // Reset variables
+        currentUserName = '';
+        currentUserEmail = '';
+        failedAttempts = 0;
+        
+        // Hide all modals
+        document.getElementById('confirmationDialog').style.display = 'none';
+        document.getElementById('systemInfoModal').style.display = 'none';
+        document.getElementById('usersModal').style.display = 'none';
       }
       
       // Function to handle failed login
@@ -398,6 +1541,30 @@
         }, 2000);
       }
       
+      // Function to populate users list modal
+      function populateUsersList() {
+        const usersList = document.getElementById('usersList');
+        usersList.innerHTML = '';
+        
+        allowedEmails.forEach(email => {
+          const li = document.createElement('li');
+          li.textContent = email;
+          usersList.appendChild(li);
+        });
+      }
+      
+      // Function to show system info modal
+      function showSystemInfo() {
+        document.getElementById('systemInfoModal').style.display = 'flex';
+        // Reset scroll to top when opening
+        document.querySelector('.system-info-content').scrollTop = 0;
+      }
+      
+      // Function to hide system info modal
+      function hideSystemInfo() {
+        document.getElementById('systemInfoModal').style.display = 'none';
+      }
+      
       // Handle login form submission
       document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -422,6 +1589,75 @@
         }
       });
       
+      // Handle dark mode toggle
+      document.getElementById('darkModeToggle').addEventListener('change', function() {
+        toggleDarkMode();
+      });
+      
+      // Handle logout button - show confirmation dialog
+      document.getElementById('logoutButton').addEventListener('click', function() {
+        document.getElementById('confirmationDialog').style.display = 'flex';
+      });
+      
+      // Handle confirmation dialog buttons
+      document.getElementById('confirmLogout').addEventListener('click', function() {
+        logout();
+      });
+      
+      document.getElementById('cancelLogout').addEventListener('click', function() {
+        document.getElementById('confirmationDialog').style.display = 'none';
+      });
+      
+      // Close confirmation dialog when clicking outside
+      document.getElementById('confirmationDialog').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
+      
+      // Handle system info toggle
+      document.getElementById('systemInfoToggle').addEventListener('click', function(e) {
+        e.preventDefault();
+        showSystemInfo();
+      });
+      
+      // Handle system info modal close
+      document.getElementById('closeSystemInfo').addEventListener('click', hideSystemInfo);
+      
+      // Close system info modal when clicking outside
+      document.getElementById('systemInfoModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          hideSystemInfo();
+        }
+      });
+      
+      // Handle authorized users link in system info modal
+      document.getElementById('showUsersListModal').addEventListener('click', function(e) {
+        e.preventDefault();
+        hideSystemInfo(); // Close system info modal first
+        setTimeout(() => {
+          populateUsersList();
+          document.getElementById('usersModal').style.display = 'flex';
+        }, 300);
+      });
+      
+      // Handle authorized users modal
+      document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('usersModal').style.display = 'none';
+      });
+      
+      // Close users modal when clicking outside
+      document.getElementById('usersModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
+      
+      // Handle keep active button
+      document.getElementById('keepActiveButton').addEventListener('click', function() {
+        resetActivityTimer();
+      });
+      
       // Clear input errors on focus
       document.getElementById('email').addEventListener('focus', function() {
         this.classList.remove('error');
@@ -440,15 +1676,25 @@
       
       // Initialize when page loads
       document.addEventListener('DOMContentLoaded', function() {
+        // Update copyright year
+        updateCopyrightYear();
+        
+        // Initialize dark mode
+        initializeDarkMode();
+        
+        // Check for existing session
+        if (checkSession()) {
+          // User is already logged in
+          return;
+        }
+        
         // Clear any existing session data
         sessionStorage.clear();
-        localStorage.removeItem('aesrnLoggedIn');
-        localStorage.removeItem('aesrnLoginExpiry');
         
         // Auto-focus on email field
         document.getElementById('email').focus();
         
-        // Force login on every page load
+        // Force login on every page load if no session
         document.getElementById('loginContainer').style.display = 'flex';
         document.getElementById('formContainer').style.display = 'none';
         document.getElementById('siteFooter').style.display = 'none';
@@ -465,16 +1711,26 @@
       
       // Detect when user leaves the page
       window.addEventListener('beforeunload', function() {
-        // Clear any session data when leaving
-        sessionStorage.clear();
+        // Save last activity time
+        if (currentUserEmail) {
+          createSession();
+        }
       });
       
-      // Detect page refresh
-      window.addEventListener('load', function() {
-        // Clear any potential stored data
-        sessionStorage.clear();
-        localStorage.removeItem('aesrnLoggedIn');
-        localStorage.removeItem('aesrnLoginExpiry');
+      // Detect page visibility change (tab switch)
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden && currentUserEmail) {
+          // Tab became visible, check session
+          const sessionData = localStorage.getItem('aesrnSession');
+          if (sessionData) {
+            const { expiry } = JSON.parse(sessionData);
+            if (Date.now() > expiry) {
+              logoutDueToInactivity();
+            } else {
+              resetActivityTimer();
+            }
+          }
+        }
       });
     </script>
   </body>
