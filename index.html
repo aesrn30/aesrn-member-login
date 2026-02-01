@@ -1,0 +1,479 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>African Emerging Scholars Research Network (AESRN)</title>
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    <style type="text/css">
+      html { margin: 0; height: 100%; overflow: hidden; }
+      iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: 0; }
+      body { 
+        margin: 0; 
+        height: 100vh; 
+        display: flex; 
+        flex-direction: column; 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #f5f7fa;
+      }
+      .footer {
+        background: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid #e9ecef;
+        color: #6c757d;
+        font-size: 14px;
+        line-height: 1.5;
+        z-index: 10;
+        position: relative;
+      }
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .footer a {
+        color: #2c3e50;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .footer a:hover {
+        color: #1a252f;
+        text-decoration: underline;
+      }
+      .footer-logo {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 8px;
+      }
+      .footer-copyright {
+        font-size: 13px;
+        opacity: 0.9;
+      }
+      .form-container {
+        flex: 1;
+        position: relative;
+        display: none; /* Hidden until login */
+      }
+      
+      /* Login Container Styles */
+      .login-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+      }
+      
+      .login-box {
+        background: white;
+        border-radius: 12px;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+      .login-logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a237e;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+      }
+      
+      .login-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 8px;
+      }
+      
+      .login-subtitle {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      
+      .form-group {
+        margin-bottom: 24px;
+      }
+      
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: #444;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      
+      .form-input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        background: #fafafa;
+      }
+      
+      .form-input:focus {
+        outline: none;
+        border-color: #1a237e;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+      }
+      
+      .form-input.error {
+        border-color: #d32f2f;
+        background: #fff5f5;
+      }
+      
+      .login-button {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+      
+      .login-button:hover {
+        background: linear-gradient(135deg, #0d155e 0%, #1c236d 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(26, 35, 126, 0.2);
+      }
+      
+      .login-button:active {
+        transform: translateY(0);
+      }
+      
+      .login-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+      
+      .error-message {
+        color: #d32f2f;
+        font-size: 13px;
+        margin-top: 12px;
+        text-align: center;
+        display: none;
+        padding: 10px;
+        background: #ffebee;
+        border-radius: 6px;
+        border-left: 4px solid #d32f2f;
+      }
+      
+      .attempts-warning {
+        color: #f57c00;
+        font-size: 13px;
+        margin-top: 10px;
+        text-align: center;
+        display: none;
+        padding: 8px;
+        background: #fff3e0;
+        border-radius: 6px;
+        border-left: 4px solid #f57c00;
+      }
+      
+      .security-note {
+        color: #666;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+      
+      @media (max-width: 768px) {
+        .footer {
+          padding: 15px;
+          font-size: 13px;
+        }
+        .footer-copyright {
+          font-size: 12px;
+        }
+        .login-box {
+          padding: 30px 20px;
+          margin: 15px;
+        }
+        .login-title {
+          font-size: 18px;
+        }
+        .login-logo {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Login Container (Visible by default) -->
+    <div class="login-container" id="loginContainer">
+      <div class="login-box">
+        <div class="login-header">
+          <div class="login-logo">AESRN</div>
+          <div class="login-title">Member Access Portal</div>
+          <div class="login-subtitle">
+            Enter your credentials to access the research network form
+          </div>
+        </div>
+        
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              class="form-input" 
+              placeholder="Enter registered email address"
+              required
+              autocomplete="off"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="password">Access Password</label>
+            <input 
+              type="password" 
+              id="password" 
+              class="form-input" 
+              placeholder="Enter access password"
+              required
+              autocomplete="off"
+            >
+          </div>
+          
+          <button type="submit" class="login-button" id="loginButton">Continue to Form</button>
+          
+          <div class="error-message" id="errorMessage">
+            Invalid credentials. Please check your email and password.
+          </div>
+          
+          <div class="attempts-warning" id="attemptsWarning">
+            Multiple failed attempts may temporarily restrict access.
+          </div>
+          
+          <div class="security-note">
+            For security reasons, access is restricted to authorized members only.
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Form Container (Hidden until login) -->
+    <div class="form-container" id="formContainer">
+      <iframe 
+        data-tally-src="https://tally.so/r/dWd6gA?transparentBackground=1&formEventsForwarding=1" 
+        width="100%" 
+        height="100%" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0" 
+        title="African Emerging Scholars Research Network (AESRN)"
+      ></iframe>
+    </div>
+    
+    <footer class="footer" style="display: none;" id="siteFooter">
+      <div class="footer-content">
+        <div class="footer-logo">African Emerging Scholars Research Network (AESRN)</div>
+        <div class="footer-copyright">
+          Copyright © 2026 African Emerging Scholars Research Network (AESRN). All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // List of allowed email addresses (case-insensitive)
+      const allowedEmails = [
+        "malikseidu4@gmail.com",
+        "Malikseidu4@gmail.com",
+        "abdul0247080685@gmail.com",
+        "Abdul0247080685@gmail.com",
+        "ednadie93@gmail.com",
+        "Ednadie93@gmail.com",
+        "member3@aesrn.org",
+        "member4@aesrn.org"
+      ];
+      
+      // Correct password
+      const correctPassword = "research123";
+      
+      // Track failed attempts
+      let failedAttempts = 0;
+      const maxAttempts = 5;
+      
+      // Function to validate login credentials
+      function validateLogin(email, password) {
+        // Normalize email for case-insensitive comparison
+        const normalizedEmail = email.trim();
+        const normalizedPassword = password.trim();
+        
+        // Check if email is in allowed list
+        const isEmailValid = allowedEmails.some(allowedEmail => 
+          allowedEmail.toLowerCase() === normalizedEmail.toLowerCase()
+        );
+        
+        // Check if password is correct
+        const isPasswordValid = normalizedPassword === correctPassword;
+        
+        return isEmailValid && isPasswordValid;
+      }
+      
+      // Function to show form and hide login
+      function showForm() {
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('formContainer').style.display = 'flex';
+        document.getElementById('siteFooter').style.display = 'block';
+        
+        // Clear any stored session data to force re-login on next visit
+        sessionStorage.removeItem('aesrnLoggedIn');
+        
+        // Also clear any possible localStorage entries
+        localStorage.removeItem('aesrnLoggedIn');
+        localStorage.removeItem('aesrnLoginExpiry');
+      }
+      
+      // Function to handle failed login
+      function handleFailedLogin() {
+        failedAttempts++;
+        const errorMessage = document.getElementById('errorMessage');
+        const attemptsWarning = document.getElementById('attemptsWarning');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('loginButton');
+        
+        // Show error message
+        errorMessage.style.display = 'block';
+        
+        // Add error class to inputs
+        emailInput.classList.add('error');
+        passwordInput.classList.add('error');
+        
+        // Clear password field
+        passwordInput.value = '';
+        
+        // Focus back on email field
+        emailInput.focus();
+        emailInput.select();
+        
+        // Show attempts warning after 3 failed attempts
+        if (failedAttempts >= 3) {
+          attemptsWarning.style.display = 'block';
+        }
+        
+        // Disable login button temporarily after max attempts
+        if (failedAttempts >= maxAttempts) {
+          loginButton.disabled = true;
+          loginButton.textContent = 'Access Temporarily Restricted';
+          
+          // Re-enable after 30 seconds
+          setTimeout(() => {
+            loginButton.disabled = false;
+            loginButton.textContent = 'Continue to Form';
+            attemptsWarning.style.display = 'none';
+            failedAttempts = 0;
+          }, 30000);
+        }
+        
+        // Remove error class after 2 seconds
+        setTimeout(() => {
+          emailInput.classList.remove('error');
+          passwordInput.classList.remove('error');
+        }, 2000);
+      }
+      
+      // Handle login form submission
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+        const attemptsWarning = document.getElementById('attemptsWarning');
+        
+        // Hide messages initially
+        errorMessage.style.display = 'none';
+        attemptsWarning.style.display = 'none';
+        
+        if (validateLogin(email, password)) {
+          // Reset failed attempts on successful login
+          failedAttempts = 0;
+          
+          // Show form
+          showForm();
+        } else {
+          handleFailedLogin();
+        }
+      });
+      
+      // Clear input errors on focus
+      document.getElementById('email').addEventListener('focus', function() {
+        this.classList.remove('error');
+      });
+      
+      document.getElementById('password').addEventListener('focus', function() {
+        this.classList.remove('error');
+      });
+      
+      // Add keypress event for Enter key in password field
+      document.getElementById('password').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+        }
+      });
+      
+      // Initialize when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        // Clear any existing session data
+        sessionStorage.clear();
+        localStorage.removeItem('aesrnLoggedIn');
+        localStorage.removeItem('aesrnLoginExpiry');
+        
+        // Auto-focus on email field
+        document.getElementById('email').focus();
+        
+        // Force login on every page load
+        document.getElementById('loginContainer').style.display = 'flex';
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('siteFooter').style.display = 'none';
+        
+        // Clear form inputs
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+      });
+      
+      // Prevent browser password saving
+      document.getElementById('loginForm').setAttribute('autocomplete', 'off');
+      document.getElementById('email').setAttribute('autocomplete', 'new-email');
+      document.getElementById('password').setAttribute('autocomplete', 'new-password');
+      
+      // Detect when user leaves the page
+      window.addEventListener('beforeunload', function() {
+        // Clear any session data when leaving
+        sessionStorage.clear();
+      });
+      
+      // Detect page refresh
+      window.addEventListener('load', function() {
+        // Clear any potential stored data
+        sessionStorage.clear();
+        localStorage.removeItem('aesrnLoggedIn');
+        localStorage.removeItem('aesrnLoginExpiry');
+      });
+    </script>
+  </body>
+</html>
