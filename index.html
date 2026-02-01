@@ -84,6 +84,10 @@
         color: #ffffff;
       }
       
+      body.dark-mode .form-input::placeholder {
+        color: #999;
+      }
+      
       body.dark-mode .form-input:focus {
         border-color: #bb86fc;
         background: #333;
@@ -92,6 +96,7 @@
       
       body.dark-mode .login-button {
         background: linear-gradient(135deg, #bb86fc 0%, #985eff 100%);
+        color: #121212;
       }
       
       body.dark-mode .login-button:hover {
@@ -158,78 +163,165 @@
         background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
         color: white;
         padding: 15px 25px;
-        border-radius: 8px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         z-index: 2000;
         display: none;
         align-items: center;
-        gap: 12px;
-        animation: slideInRight 0.5s ease;
-        max-width: 350px;
+        gap: 15px;
+        animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        max-width: 380px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
       }
       
       body.dark-mode .login-notification {
-        background: linear-gradient(135deg, #bb86fc 0%, #985eff 100%);
+        background: linear-gradient(135deg, rgba(187, 134, 252, 0.95) 0%, rgba(152, 94, 255, 0.95) 100%);
         color: #121212;
+        border: 1px solid rgba(187, 134, 252, 0.2);
       }
       
       @keyframes slideInRight {
         from {
-          transform: translateX(100%);
+          transform: translateX(100%) translateY(-20px);
           opacity: 0;
         }
         to {
-          transform: translateX(0);
+          transform: translateX(0) translateY(0);
           opacity: 1;
         }
       }
       
-      @keyframes fadeOut {
+      @keyframes fadeOutUp {
         from {
+          transform: translateY(0);
           opacity: 1;
         }
         to {
+          transform: translateY(-20px);
           opacity: 0;
         }
       }
       
       .login-notification-icon {
-        font-size: 24px;
+        font-size: 28px;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      
+      body.dark-mode .login-notification-icon {
+        background: rgba(0, 0, 0, 0.2);
       }
       
       .login-notification-content h4 {
         margin: 0 0 5px 0;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 700;
       }
       
       .login-notification-content p {
         margin: 0;
         font-size: 14px;
         opacity: 0.9;
+        font-weight: 500;
       }
       
-      /* Ghana Time Display */
-      .ghana-time {
-        font-family: 'Courier New', monospace;
-        font-size: 13px;
-        padding: 4px 8px;
-        background: #f8f9fa;
-        border-radius: 4px;
-        border: 1px solid #e9ecef;
-        margin-top: 5px;
+      /* Ghana Time Display - Enhanced */
+      .ghana-time-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 8px 15px;
+        border-radius: 25px;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
       }
       
-      body.dark-mode .ghana-time {
-        background: #2d2d2d;
+      body.dark-mode .ghana-time-container {
+        background: linear-gradient(135deg, #2d2d2d 0%, #1e1e1e 100%);
         border: 1px solid #444;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+      
+      .ghana-time-container:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      
+      body.dark-mode .ghana-time-container:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+      
+      .ghana-flag {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .ghana-time-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: #495057;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      body.dark-mode .ghana-time-label {
         color: #b0b0b0;
       }
       
-      .time-update {
-        font-size: 11px;
-        opacity: 0.7;
-        margin-left: 5px;
+      .ghana-time-display {
+        font-family: 'Courier New', 'SF Mono', Monaco, Consolas, monospace;
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a237e;
+        background: white;
+        padding: 4px 10px;
+        border-radius: 15px;
+        min-width: 85px;
+        text-align: center;
+        border: 1px solid #1a237e;
+      }
+      
+      body.dark-mode .ghana-time-display {
+        color: #bb86fc;
+        background: #121212;
+        border: 1px solid #bb86fc;
+      }
+      
+      .ghana-timezone {
+        font-size: 10px;
+        color: #6c757d;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      
+      body.dark-mode .ghana-timezone {
+        color: #999;
+      }
+      
+      .time-update-indicator {
+        width: 6px;
+        height: 6px;
+        background: #28a745;
+        border-radius: 50%;
+        margin-left: 3px;
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
       }
       
       .footer {
@@ -253,13 +345,14 @@
         display: flex;
         align-items: center;
         gap: 15px;
+        flex-wrap: wrap;
       }
       .footer-right {
         text-align: right;
         display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 4px;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
       }
       .footer-email {
         color: #2c3e50;
@@ -312,6 +405,7 @@
       
       body.dark-mode .loading-overlay {
         background: rgba(30, 30, 30, 0.95);
+        color: #e0e0e0;
       }
       
       .loading-spinner {
@@ -418,6 +512,11 @@
         box-sizing: border-box;
         background: #fafafa;
         transition: all 0.3s ease;
+        color: #333;
+      }
+      
+      body.dark-mode .form-input {
+        color: #ffffff;
       }
       
       .form-input:focus {
@@ -427,9 +526,20 @@
         box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
       }
       
+      body.dark-mode .form-input:focus {
+        border-color: #bb86fc;
+        background: #333;
+        box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.1);
+      }
+      
       .form-input.error {
         border-color: #d32f2f;
         background: #fff5f5;
+      }
+      
+      body.dark-mode .form-input.error {
+        background: #422;
+        border-color: #d32f2f;
       }
       
       .login-button {
@@ -461,6 +571,12 @@
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
+        color: #666;
+      }
+      
+      body.dark-mode .login-button:disabled {
+        background: #555;
+        color: #999;
       }
       
       .error-message {
@@ -565,6 +681,89 @@
         min-width: 70px;
       }
       
+      /* Dark Mode Toggle in Footer */
+      .footer-dark-mode-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f0f0f0;
+        padding: 6px 12px;
+        border-radius: 20px;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease;
+      }
+      
+      body.dark-mode .footer-dark-mode-toggle {
+        background: #2d2d2d;
+        border: 1px solid #444;
+      }
+      
+      .footer-dark-mode-toggle:hover {
+        background: #e8e8e8;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      body.dark-mode .footer-dark-mode-toggle:hover {
+        background: #3d3d3d;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      .footer-toggle-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        color: #555;
+        transition: color 0.3s ease;
+      }
+      
+      body.dark-mode .footer-toggle-label {
+        color: #b0b0b0;
+      }
+      
+      .footer-toggle-slider {
+        position: relative;
+        width: 40px;
+        height: 20px;
+        background-color: #bbb;
+        border-radius: 34px;
+        transition: background-color 0.3s ease;
+      }
+      
+      .footer-toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+      }
+      
+      .footer-toggle-input:checked + .footer-toggle-slider {
+        background-color: #4CAF50;
+      }
+      
+      body.dark-mode .footer-toggle-input:checked + .footer-toggle-slider {
+        background-color: #bb86fc;
+      }
+      
+      .footer-toggle-input:checked + .footer-toggle-slider:before {
+        transform: translateX(20px);
+      }
+      
+      .footer-toggle-icon {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
       /* Logout Button */
       .logout-button {
         background: #d32f2f;
@@ -584,6 +783,26 @@
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(211, 47, 47, 0.2);
       }
+      
+      /* Fix for Tally form background in dark mode */
+body.dark-mode .form-container {
+  background: #121212;
+}
+
+body.dark-mode iframe {
+  background: transparent !important;
+}
+
+/* Ensure the iframe content is visible in dark mode */
+body.dark-mode #formIframe {
+  background: transparent;
+}
+
+/* Make sure the loading overlay matches dark mode */
+body.dark-mode .form-container .loading-overlay {
+  background: rgba(30, 30, 30, 0.95);
+  color: #e0e0e0;
+}
       
       /* System Information Toggle */
       .system-info-toggle {
@@ -881,6 +1100,10 @@
         margin: 0;
       }
       
+      body.dark-mode .modal-title {
+        color: #ffffff;
+      }
+      
       .close-button {
         background: none;
         border: none;
@@ -899,6 +1122,11 @@
       .close-button:hover {
         background: #f8f9fa;
         color: #343a40;
+      }
+      
+      body.dark-mode .close-button:hover {
+        background: #333;
+        color: #ffffff;
       }
       
       .users-list {
@@ -952,6 +1180,10 @@
         color: #d32f2f;
         margin: 20px 0;
         font-family: monospace;
+      }
+      
+      body.dark-mode .inactivity-timer {
+        color: #ff8a80;
       }
       
       .inactivity-message {
@@ -1103,10 +1335,19 @@
           text-align: center;
           width: 100%;
           justify-content: center;
+          flex-wrap: wrap;
         }
         .footer-left {
           flex-direction: column;
           gap: 8px;
+        }
+        .footer-right {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        .footer-dark-mode-toggle {
+          margin-top: 5px;
         }
         .logout-button {
           margin-left: 0;
@@ -1159,11 +1400,36 @@
           right: 10px;
           left: 10px;
           max-width: none;
+          padding: 12px 20px;
         }
         .footer-right {
           align-items: center;
         }
-        .ghana-time {
+        .ghana-time-container {
+          padding: 6px 12px;
+        }
+        .ghana-time-display {
+          min-width: 75px;
+          font-size: 12px;
+          padding: 3px 8px;
+        }
+        .ghana-time-label {
+          font-size: 10px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .footer {
+          padding: 10px 12px;
+        }
+        .footer-left, .footer-right {
+          flex-direction: column;
+          align-items: center;
+        }
+        .footer-dark-mode-toggle {
+          margin-top: 8px;
+        }
+        .logout-button {
           margin-top: 8px;
         }
       }
@@ -1243,18 +1509,18 @@
         <div class="loading-spinner"></div>
         <div class="loading-text">Loading form...</div>
       </div>
-      <iframe 
-        data-tally-src="https://tally.so/r/dWd6gA?transparentBackground=1&formEventsForwarding=1" 
-        width="100%" 
-        height="100%" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0" 
-        title="African Emerging Scholars Research Network (AESRN)"
-        id="formIframe"
-        style="visibility: hidden;"
-        onload="hideLoading()"
-      ></iframe>
+<iframe 
+  data-tally-src="https://tally.so/r/dWd6gA?transparentBackground=1&formEventsForwarding=1" 
+  width="100%" 
+  height="100%" 
+  frameborder="0" 
+  marginheight="0" 
+  marginwidth="0" 
+  title="African Emerging Scholars Research Network (AESRN)"
+  id="formIframe"
+  style="visibility: hidden;"
+  onload="hideLoading()"
+></iframe>
     </div>
     
     <!-- Login Greeting Notification -->
@@ -1274,12 +1540,24 @@
         <button class="logout-button" id="logoutButton">Logout</button>
       </div>
       <div class="footer-right">
+        <!-- Dark Mode Toggle in Footer -->
+        <div class="footer-dark-mode-toggle">
+          <label class="footer-toggle-label">
+            <div class="footer-toggle-icon">🌙</div>
+            <input type="checkbox" class="footer-toggle-input" id="footerDarkModeToggle">
+            <span class="footer-toggle-slider"></span>
+          </label>
+        </div>
+        
         <div>
           Email: <a href="mailto:research.aesrn@yahoo.com" class="footer-email">research.aesrn@yahoo.com</a>
         </div>
-        <div class="ghana-time">
-          Ghana Time: <span id="ghanaTimeDisplay">--:--:--</span>
-          <span class="time-update" id="timeUpdate">GMT</span>
+        <div class="ghana-time-container" title="Current Ghana Time (GMT)">
+          <div class="ghana-flag" id="ghanaFlag">🇬🇭</div>
+          <div class="ghana-time-label">Ghana</div>
+          <div class="ghana-time-display" id="ghanaTimeDisplay">--:--:--</div>
+          <div class="ghana-timezone">GMT</div>
+          <div class="time-update-indicator" id="timeUpdateIndicator"></div>
         </div>
       </div>
       <div class="footer-copyright">
@@ -1307,6 +1585,7 @@
             <ul>
               <li><strong>Auto-logout:</strong> Session automatically expires after 5 minutes of inactivity</li>
               <li><strong>Session Management:</strong> Secure session persistence across page reloads</li>
+              <li><strong>Single Session:</strong> Users cannot login simultaneously from multiple devices</li>
               <li><strong>Brute Force Protection:</strong> Temporary lockout after multiple failed login attempts</li>
               <li><strong>Credential Validation:</strong> Secure server-side validation of user credentials</li>
               <li><strong>Encrypted Storage:</strong> Local session data encryption</li>
@@ -1323,6 +1602,7 @@
               <li><strong>Integration:</strong> Tally.so for form data collection and management</li>
               <li><strong>Cross-Browser:</strong> Compatible with Chrome, Firefox, Safari, Edge</li>
               <li><strong>Performance:</strong> Optimized for fast loading and smooth interactions</li>
+              <li><strong>Time Zone:</strong> Ghana Time (GMT) displayed in footer</li>
             </ul>
           </div>
           
@@ -1331,10 +1611,12 @@
             <p>Access is granted to pre-approved email addresses. The system supports:</p>
             <ul>
               <li>Individual user authentication</li>
+              <li>Single session per user (no simultaneous logins)</li>
               <li>Session persistence for uninterrupted workflow</li>
               <li>Secure logout with confirmation</li>
               <li>Activity timeout warnings</li>
               <li>Dark/light mode preferences</li>
+              <li>Personalized login greetings</li>
             </ul>
           </div>
           
@@ -1349,7 +1631,7 @@
           <div class="copyright-info">
             <p>Copyright © <span id="currentYearModal"></span> African Emerging Scholars Research Network (AESRN)</p>
             <p>All rights reserved. Unauthorized access or distribution is strictly prohibited.</p>
-            <p style="font-size: 11px; margin-top: 10px;">System Version: 2.2 | Last Updated: 2026</p>
+            <p style="font-size: 11px; margin-top: 10px;">System Version: 2.3 | Last Updated: 2026</p>
           </div>
         </div>
       </div>
@@ -1434,6 +1716,86 @@
       
       // Ghana time update interval
       let ghanaTimeInterval;
+      
+      // Active sessions tracking
+      const ACTIVE_SESSIONS_KEY = 'aesrnActiveSessions';
+      const SESSION_ID_KEY = 'aesrnSessionId';
+      
+      // Generate unique session ID
+      function generateSessionId() {
+        return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      }
+      
+      // Get current session ID
+      function getSessionId() {
+        return localStorage.getItem(SESSION_ID_KEY);
+      }
+      
+      // Set session ID
+      function setSessionId(sessionId) {
+        localStorage.setItem(SESSION_ID_KEY, sessionId);
+      }
+      
+      // Remove session ID
+      function removeSessionId() {
+        localStorage.removeItem(SESSION_ID_KEY);
+      }
+      
+      // Check if user is already logged in elsewhere
+      function isUserAlreadyLoggedIn(email) {
+        const activeSessions = JSON.parse(localStorage.getItem(ACTIVE_SESSIONS_KEY) || '{}');
+        const userSession = activeSessions[email];
+        
+        if (userSession) {
+          const now = Date.now();
+          const sessionExpiry = userSession.expiry;
+          const sessionId = userSession.sessionId;
+          const currentSessionId = getSessionId();
+          
+          // If session is expired, remove it
+          if (now > sessionExpiry) {
+            delete activeSessions[email];
+            localStorage.setItem(ACTIVE_SESSIONS_KEY, JSON.stringify(activeSessions));
+            return false;
+          }
+          
+          // If this is a different session (different device/browser), logout the other session
+          if (sessionId !== currentSessionId) {
+            return true; // User is logged in elsewhere
+          }
+        }
+        
+        return false;
+      }
+      
+      // Register active session
+      function registerActiveSession(email, sessionId) {
+        const activeSessions = JSON.parse(localStorage.getItem(ACTIVE_SESSIONS_KEY) || '{}');
+        activeSessions[email] = {
+          sessionId: sessionId,
+          expiry: Date.now() + SESSION_TIMEOUT,
+          timestamp: Date.now()
+        };
+        localStorage.setItem(ACTIVE_SESSIONS_KEY, JSON.stringify(activeSessions));
+      }
+      
+      // Unregister active session
+      function unregisterActiveSession(email) {
+        const activeSessions = JSON.parse(localStorage.getItem(ACTIVE_SESSIONS_KEY) || '{}');
+        if (activeSessions[email]) {
+          delete activeSessions[email];
+          localStorage.setItem(ACTIVE_SESSIONS_KEY, JSON.stringify(activeSessions));
+        }
+      }
+      
+      // Update session expiry
+      function updateSessionExpiry(email) {
+        const activeSessions = JSON.parse(localStorage.getItem(ACTIVE_SESSIONS_KEY) || '{}');
+        if (activeSessions[email]) {
+          activeSessions[email].expiry = Date.now() + SESSION_TIMEOUT;
+          localStorage.setItem(ACTIVE_SESSIONS_KEY, JSON.stringify(activeSessions));
+        }
+      }
       
       // Function to hide loading overlay
       function hideLoading() {
@@ -1521,10 +1883,10 @@
         
         // Hide notification after 5 seconds
         setTimeout(() => {
-          notification.style.animation = 'fadeOut 0.5s ease';
+          notification.style.animation = 'fadeOutUp 0.5s ease';
           setTimeout(() => {
             notification.style.display = 'none';
-            notification.style.animation = 'slideInRight 0.5s ease';
+            notification.style.animation = 'slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
           }, 500);
         }, 5000);
       }
@@ -1544,11 +1906,15 @@
       // Function to update Ghana time display
       function updateGhanaTime() {
         const ghanaTimeDisplay = document.getElementById('ghanaTimeDisplay');
-        const timeUpdate = document.getElementById('timeUpdate');
+        const timeUpdateIndicator = document.getElementById('timeUpdateIndicator');
         
         if (ghanaTimeDisplay) {
           ghanaTimeDisplay.textContent = getGhanaTime();
-          timeUpdate.textContent = 'GMT';
+          
+          // Pulsing animation for live update indicator
+          if (timeUpdateIndicator) {
+            timeUpdateIndicator.style.animation = 'pulse 2s infinite';
+          }
         }
       }
       
@@ -1578,6 +1944,7 @@
       function enableDarkMode() {
         document.body.classList.add('dark-mode');
         document.getElementById('darkModeToggle').checked = true;
+        document.getElementById('footerDarkModeToggle').checked = true;
         isDarkMode = true;
         localStorage.setItem('aesrnDarkMode', 'true');
       }
@@ -1586,6 +1953,7 @@
       function disableDarkMode() {
         document.body.classList.remove('dark-mode');
         document.getElementById('darkModeToggle').checked = false;
+        document.getElementById('footerDarkModeToggle').checked = false;
         isDarkMode = false;
         localStorage.setItem('aesrnDarkMode', 'false');
       }
@@ -1599,12 +1967,28 @@
         }
       }
       
+      // Function to sync dark mode toggle states
+      function syncDarkModeToggles() {
+        const mainToggle = document.getElementById('darkModeToggle');
+        const footerToggle = document.getElementById('footerDarkModeToggle');
+        
+        if (mainToggle && footerToggle) {
+          mainToggle.checked = isDarkMode;
+          footerToggle.checked = isDarkMode;
+        }
+      }
+      
       // Function to reset activity timer
       function resetActivityTimer() {
         lastActivityTime = Date.now();
         clearTimeout(logoutTimer);
         clearTimeout(warningTimer);
         hideInactivityWarning();
+        
+        // Update session expiry in active sessions
+        if (currentUserEmail) {
+          updateSessionExpiry(currentUserEmail);
+        }
         
         // Set warning timer (4 minutes)
         warningTimer = setTimeout(showInactivityWarning, SESSION_TIMEOUT - WARNING_TIMEOUT);
@@ -1693,6 +2077,16 @@
         );
         
         if (emailKey) {
+          // Check if user is already logged in elsewhere
+          if (isUserAlreadyLoggedIn(emailKey)) {
+            showCustomAlert('Already Logged In', 
+              'This account is already logged in on another device. The other session will be logged out automatically.',
+              'warning');
+            
+            // Force logout the other session
+            unregisterActiveSession(emailKey);
+          }
+          
           // Get user name from map
           currentUserName = userMap[emailKey];
           currentUserEmail = emailKey;
@@ -1710,23 +2104,42 @@
       function checkSession() {
         const sessionData = localStorage.getItem('aesrnSession');
         if (sessionData) {
-          const { email, expiry } = JSON.parse(sessionData);
+          const { email, expiry, sessionId } = JSON.parse(sessionData);
           
           // Check if session is still valid
           if (Date.now() < expiry) {
-            // Auto-login user
-            currentUserEmail = email;
-            const emailKey = Object.keys(userMap).find(key => 
-              key.toLowerCase() === email.toLowerCase()
-            );
-            currentUserName = emailKey ? userMap[emailKey] : email.split('@')[0];
+            // Check if this session is still the active one
+            const activeSessions = JSON.parse(localStorage.getItem(ACTIVE_SESSIONS_KEY) || '{}');
+            const activeSession = activeSessions[email];
             
-            // Load form immediately
-            loadFormAfterLogin();
-            return true;
+            if (activeSession && activeSession.sessionId === sessionId) {
+              // Auto-login user
+              currentUserEmail = email;
+              const emailKey = Object.keys(userMap).find(key => 
+                key.toLowerCase() === email.toLowerCase()
+              );
+              currentUserName = emailKey ? userMap[emailKey] : email.split('@')[0];
+              
+              // Update session ID
+              setSessionId(sessionId);
+              
+              // Sync dark mode toggle
+              syncDarkModeToggles();
+              
+              // Load form immediately
+              loadFormAfterLogin();
+              return true;
+            } else {
+              // Session was logged out from another device
+              localStorage.removeItem('aesrnSession');
+              showCustomAlert('Session Ended', 
+                'Your session was ended because you logged in from another device.',
+                'info');
+            }
           } else {
             // Session expired, clear it
             localStorage.removeItem('aesrnSession');
+            unregisterActiveSession(email);
           }
         }
         return false;
@@ -1735,11 +2148,15 @@
       // Function to create new session
       function createSession() {
         const expiry = Date.now() + SESSION_TIMEOUT;
+        const sessionId = generateSessionId();
         const sessionData = {
           email: currentUserEmail,
-          expiry: expiry
+          expiry: expiry,
+          sessionId: sessionId
         };
         localStorage.setItem('aesrnSession', JSON.stringify(sessionData));
+        setSessionId(sessionId);
+        registerActiveSession(currentUserEmail, sessionId);
       }
       
       // Function to load the Tally form
@@ -1777,6 +2194,9 @@
         // Show footer
         document.getElementById('siteFooter').style.display = 'flex';
         
+        // Sync dark mode toggle in footer
+        syncDarkModeToggles();
+        
         // Start Ghana time updates
         startGhanaTimeUpdates();
         
@@ -1800,6 +2220,14 @@
         // Clear session data
         localStorage.removeItem('aesrnSession');
         sessionStorage.clear();
+        
+        // Unregister active session
+        if (currentUserEmail) {
+          unregisterActiveSession(currentUserEmail);
+        }
+        
+        // Remove session ID
+        removeSessionId();
         
         // Stop Ghana time updates
         stopGhanaTimeUpdates();
@@ -1954,8 +2382,13 @@
         }
       });
       
-      // Handle dark mode toggle
+      // Handle dark mode toggle from login page
       document.getElementById('darkModeToggle').addEventListener('change', function() {
+        toggleDarkMode();
+      });
+      
+      // Handle dark mode toggle from footer
+      document.getElementById('footerDarkModeToggle').addEventListener('change', function() {
         toggleDarkMode();
       });
       
@@ -2027,6 +2460,11 @@
         // Initialize dark mode
         initializeDarkMode();
         
+        // Generate or get session ID
+        if (!getSessionId()) {
+          setSessionId(generateSessionId());
+        }
+        
         // Check for existing session
         if (checkSession()) {
           console.log('Existing session found, auto-logging in...');
@@ -2059,11 +2497,6 @@
         }
       });
       
-      // Prevent browser password saving
-      document.getElementById('loginForm').setAttribute('autocomplete', 'off');
-      document.getElementById('email').setAttribute('autocomplete', 'new-email');
-      document.getElementById('password').setAttribute('autocomplete', 'new-password');
-      
       // Detect when user leaves the page
       window.addEventListener('beforeunload', function() {
         // Save last activity time
@@ -2078,15 +2511,49 @@
           // Tab became visible, check session
           const sessionData = localStorage.getItem('aesrnSession');
           if (sessionData) {
-            const { expiry } = JSON.parse(sessionData);
+            const { expiry, sessionId } = JSON.parse(sessionData);
+            
+            // Check if session expired
             if (Date.now() > expiry) {
               logoutDueToInactivity();
             } else {
-              resetActivityTimer();
+              // Check if this session is still active
+              const activeSessions = JSON.parse(localStorage.getItem(ACTIVE_SESSIONS_KEY) || '{}');
+              const activeSession = activeSessions[currentUserEmail];
+              
+              if (!activeSession || activeSession.sessionId !== sessionId) {
+                showCustomAlert('Session Ended', 
+                  'Your session was ended because you logged in from another device.',
+                  'info');
+                logout();
+              } else {
+                resetActivityTimer();
+              }
             }
           }
         }
       });
+      
+      // Periodically check session status (every 30 seconds)
+      setInterval(function() {
+        if (currentUserEmail) {
+          const activeSessions = JSON.parse(localStorage.getItem(ACTIVE_SESSIONS_KEY) || '{}');
+          const sessionData = localStorage.getItem('aesrnSession');
+          
+          if (sessionData) {
+            const { sessionId } = JSON.parse(sessionData);
+            const activeSession = activeSessions[currentUserEmail];
+            
+            // If session no longer exists in active sessions, logout
+            if (!activeSession || activeSession.sessionId !== sessionId) {
+              showCustomAlert('Session Ended', 
+                'Your session was ended because you logged in from another device.',
+                'info');
+              logout();
+            }
+          }
+        }
+      }, 30000); // Check every 30 seconds
     </script>
   </body>
 </html>
