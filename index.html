@@ -150,6 +150,88 @@
         background: #333;
       }
       
+      /* Login Greeting Notification */
+      .login-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        animation: slideInRight 0.5s ease;
+        max-width: 350px;
+      }
+      
+      body.dark-mode .login-notification {
+        background: linear-gradient(135deg, #bb86fc 0%, #985eff 100%);
+        color: #121212;
+      }
+      
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      
+      .login-notification-icon {
+        font-size: 24px;
+      }
+      
+      .login-notification-content h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      
+      .login-notification-content p {
+        margin: 0;
+        font-size: 14px;
+        opacity: 0.9;
+      }
+      
+      /* Ghana Time Display */
+      .ghana-time {
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        padding: 4px 8px;
+        background: #f8f9fa;
+        border-radius: 4px;
+        border: 1px solid #e9ecef;
+        margin-top: 5px;
+      }
+      
+      body.dark-mode .ghana-time {
+        background: #2d2d2d;
+        border: 1px solid #444;
+        color: #b0b0b0;
+      }
+      
+      .time-update {
+        font-size: 11px;
+        opacity: 0.7;
+        margin-left: 5px;
+      }
+      
       .footer {
         background: #f8f9fa;
         padding: 15px 20px;
@@ -174,6 +256,10 @@
       }
       .footer-right {
         text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
       }
       .footer-email {
         color: #2c3e50;
@@ -1068,6 +1154,18 @@
         .confirm-button {
           width: 100%;
         }
+        .login-notification {
+          top: 10px;
+          right: 10px;
+          left: 10px;
+          max-width: none;
+        }
+        .footer-right {
+          align-items: center;
+        }
+        .ghana-time {
+          margin-top: 8px;
+        }
       }
     </style>
   </head>
@@ -1159,6 +1257,15 @@
       ></iframe>
     </div>
     
+    <!-- Login Greeting Notification -->
+    <div class="login-notification" id="loginNotification">
+      <div class="login-notification-icon" id="greetingIcon">👋</div>
+      <div class="login-notification-content">
+        <h4 id="greetingText">Good Morning</h4>
+        <p id="userGreeting">Welcome back!</p>
+      </div>
+    </div>
+    
     <footer class="footer" style="display: none;" id="siteFooter">
       <div class="footer-left">
         <div>
@@ -1167,7 +1274,13 @@
         <button class="logout-button" id="logoutButton">Logout</button>
       </div>
       <div class="footer-right">
-        Email: <a href="mailto:research.aesrn@yahoo.com" class="footer-email">research.aesrn@yahoo.com</a>
+        <div>
+          Email: <a href="mailto:research.aesrn@yahoo.com" class="footer-email">research.aesrn@yahoo.com</a>
+        </div>
+        <div class="ghana-time">
+          Ghana Time: <span id="ghanaTimeDisplay">--:--:--</span>
+          <span class="time-update" id="timeUpdate">GMT</span>
+        </div>
       </div>
       <div class="footer-copyright">
         Copyright © <span id="copyrightYear"></span> African Emerging Scholars Research Network (AESRN). All rights reserved.
@@ -1284,19 +1397,19 @@
     </div>
 
     <script>
-      // List of allowed email addresses (case-insensitive)
-      const allowedEmails = [
-        "malikseidu4@gmail.com",
-        "Malikseidu4@gmail.com",
-        "abdul0247080685@gmail.com",
-        "Abdul0247080685@gmail.com",
-        "ednadie93@gmail.com",
-        "Ednadie93@gmail.com",
-        "issahaqalhassan26@gmail.com",
-        "Issahaqalhassan26@gmail.com",
-        "mudassiribrahim30@gmail.com",
-        "Mudassiribrahim30@gmail.com"
-      ];
+      // List of allowed email addresses with names
+      const userMap = {
+        "malikseidu4@gmail.com": "Abdul-Malik",
+        "Malikseidu4@gmail.com": "Abdul-Malik",
+        "abdul0247080685@gmail.com": "Abdul Latif",
+        "Abdul0247080685@gmail.com": "Abdul Latif",
+        "ednadie93@gmail.com": "Edna",
+        "Ednadie93@gmail.com": "Edna",
+        "issahaqalhassan26@gmail.com": "Alhassan",
+        "Issahaqalhassan26@gmail.com": "Alhassan",
+        "mudassiribrahim30@gmail.com": "Mudasir",
+        "Mudassiribrahim30@gmail.com": "Mudasir"
+      };
       
       // Correct password
       const correctPassword = "Scholar123";
@@ -1318,6 +1431,9 @@
       
       // Dark mode state
       let isDarkMode = false;
+      
+      // Ghana time update interval
+      let ghanaTimeInterval;
       
       // Function to hide loading overlay
       function hideLoading() {
@@ -1357,6 +1473,97 @@
         const currentYear = new Date().getFullYear();
         document.getElementById('copyrightYear').textContent = currentYear;
         document.getElementById('currentYearModal').textContent = currentYear;
+      }
+      
+      // Function to get greeting based on time
+      function getGreeting() {
+        const now = new Date();
+        const hour = now.getHours();
+        
+        if (hour < 12) {
+          return "Good Morning";
+        } else if (hour < 17) {
+          return "Good Afternoon";
+        } else {
+          return "Good Evening";
+        }
+      }
+      
+      // Function to get greeting icon
+      function getGreetingIcon() {
+        const now = new Date();
+        const hour = now.getHours();
+        
+        if (hour < 12) {
+          return "🌅";
+        } else if (hour < 17) {
+          return "☀️";
+        } else {
+          return "🌙";
+        }
+      }
+      
+      // Function to show login greeting notification
+      function showLoginGreeting(userName) {
+        const notification = document.getElementById('loginNotification');
+        const greetingText = document.getElementById('greetingText');
+        const greetingIcon = document.getElementById('greetingIcon');
+        const userGreeting = document.getElementById('userGreeting');
+        
+        const greeting = getGreeting();
+        const icon = getGreetingIcon();
+        
+        greetingText.textContent = greeting;
+        greetingIcon.textContent = icon;
+        userGreeting.textContent = `${greeting} ${userName}`;
+        
+        notification.style.display = 'flex';
+        
+        // Hide notification after 5 seconds
+        setTimeout(() => {
+          notification.style.animation = 'fadeOut 0.5s ease';
+          setTimeout(() => {
+            notification.style.display = 'none';
+            notification.style.animation = 'slideInRight 0.5s ease';
+          }, 500);
+        }, 5000);
+      }
+      
+      // Function to get Ghana time
+      function getGhanaTime() {
+        const now = new Date();
+        const ghanaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Accra' }));
+        
+        const hours = ghanaTime.getHours().toString().padStart(2, '0');
+        const minutes = ghanaTime.getMinutes().toString().padStart(2, '0');
+        const seconds = ghanaTime.getSeconds().toString().padStart(2, '0');
+        
+        return `${hours}:${minutes}:${seconds}`;
+      }
+      
+      // Function to update Ghana time display
+      function updateGhanaTime() {
+        const ghanaTimeDisplay = document.getElementById('ghanaTimeDisplay');
+        const timeUpdate = document.getElementById('timeUpdate');
+        
+        if (ghanaTimeDisplay) {
+          ghanaTimeDisplay.textContent = getGhanaTime();
+          timeUpdate.textContent = 'GMT';
+        }
+      }
+      
+      // Function to start Ghana time updates
+      function startGhanaTimeUpdates() {
+        updateGhanaTime();
+        // Update every second
+        ghanaTimeInterval = setInterval(updateGhanaTime, 1000);
+      }
+      
+      // Function to stop Ghana time updates
+      function stopGhanaTimeUpdates() {
+        if (ghanaTimeInterval) {
+          clearInterval(ghanaTimeInterval);
+        }
       }
       
       // Function to initialize dark mode from localStorage
@@ -1481,20 +1688,22 @@
         const normalizedPassword = password.trim();
         
         // Check if email is in allowed list
-        const isEmailValid = allowedEmails.some(allowedEmail => {
-          if (allowedEmail.toLowerCase() === normalizedEmail.toLowerCase()) {
-            // Extract name from email for display
-            currentUserName = normalizedEmail.split('@')[0];
-            currentUserEmail = normalizedEmail;
-            return true;
-          }
-          return false;
-        });
+        const emailKey = Object.keys(userMap).find(key => 
+          key.toLowerCase() === normalizedEmail.toLowerCase()
+        );
         
-        // Check if password is correct
-        const isPasswordValid = normalizedPassword === correctPassword;
+        if (emailKey) {
+          // Get user name from map
+          currentUserName = userMap[emailKey];
+          currentUserEmail = emailKey;
+          
+          // Check if password is correct
+          const isPasswordValid = normalizedPassword === correctPassword;
+          
+          return isPasswordValid;
+        }
         
-        return isEmailValid && isPasswordValid;
+        return false;
       }
       
       // Function to check session on page load
@@ -1507,7 +1716,11 @@
           if (Date.now() < expiry) {
             // Auto-login user
             currentUserEmail = email;
-            currentUserName = email.split('@')[0];
+            const emailKey = Object.keys(userMap).find(key => 
+              key.toLowerCase() === email.toLowerCase()
+            );
+            currentUserName = emailKey ? userMap[emailKey] : email.split('@')[0];
+            
             // Load form immediately
             loadFormAfterLogin();
             return true;
@@ -1549,6 +1762,9 @@
       function loadFormAfterLogin() {
         console.log('Loading form for user:', currentUserName);
         
+        // Show login greeting
+        showLoginGreeting(currentUserName);
+        
         // Update user name display in footer
         document.getElementById('userNameDisplay').textContent = currentUserName;
         
@@ -1560,6 +1776,9 @@
         
         // Show footer
         document.getElementById('siteFooter').style.display = 'flex';
+        
+        // Start Ghana time updates
+        startGhanaTimeUpdates();
         
         // Create session
         createSession();
@@ -1582,6 +1801,9 @@
         localStorage.removeItem('aesrnSession');
         sessionStorage.clear();
         
+        // Stop Ghana time updates
+        stopGhanaTimeUpdates();
+        
         // Clear timers
         clearTimeout(logoutTimer);
         clearTimeout(warningTimer);
@@ -1591,6 +1813,10 @@
         document.removeEventListener('mousemove', trackUserActivity);
         document.removeEventListener('keydown', trackUserActivity);
         document.removeEventListener('click', trackUserActivity);
+        
+        // Hide notification
+        const notification = document.getElementById('loginNotification');
+        notification.style.display = 'none';
         
         // Show login container
         document.getElementById('loginContainer').style.display = 'flex';
@@ -1683,9 +1909,9 @@
         const usersList = document.getElementById('usersList');
         usersList.innerHTML = '';
         
-        allowedEmails.forEach(email => {
+        Object.keys(userMap).forEach(email => {
           const li = document.createElement('li');
-          li.textContent = email;
+          li.textContent = `${email} (${userMap[email]})`;
           usersList.appendChild(li);
         });
       }
@@ -1716,7 +1942,7 @@
         attemptsWarning.style.display = 'none';
         
         if (validateLogin(email, password)) {
-          console.log('Login successful for:', email);
+          console.log('Login successful for:', email, 'Name:', currentUserName);
           // Reset failed attempts on successful login
           failedAttempts = 0;
           
