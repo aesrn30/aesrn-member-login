@@ -3,14 +3,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>African Emerging Scholars Research Network (AESRN)</title>
     <link rel="icon" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png" type="image/png">
-<link itemprop="image" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
-<meta property="og:logo" content="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
-<meta name="twitter:logo" content="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+    <link itemprop="image" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+    <meta property="og:logo" content="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+    <meta name="twitter:logo" content="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
 
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-16x16.png">
-<link rel="manifest" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-16x16.png">
+    <link rel="manifest" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/site.webmanifest">
     <script async src="https://tally.so/widgets/embed.js"></script>
     <style type="text/css">
       html { margin: 0; height: 100%; overflow: hidden; }
@@ -200,10 +200,62 @@
         border-top: 1px solid #e9ecef;
         transition: border-color 0.3s ease;
       }
+      
+      /* Form container */
       .form-container {
         flex: 1;
         position: relative;
-        display: none; /* Hidden until login */
+        display: none;
+      }
+      
+      /* Loading indicator */
+      .loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        transition: opacity 0.3s ease;
+      }
+      
+      body.dark-mode .loading-overlay {
+        background: rgba(30, 30, 30, 0.95);
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #1a237e;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      
+      body.dark-mode .loading-spinner {
+        border-color: #333;
+        border-top-color: #bb86fc;
+      }
+      
+      .loading-text {
+        font-size: 16px;
+        color: #666;
+        font-weight: 500;
+      }
+      
+      body.dark-mode .loading-text {
+        color: #b0b0b0;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
       
       /* Login Container Styles */
@@ -1089,6 +1141,10 @@
     
     <!-- Form Container (Hidden until login) -->
     <div class="form-container" id="formContainer">
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading form...</div>
+      </div>
       <iframe 
         data-tally-src="https://tally.so/r/dWd6gA?transparentBackground=1&formEventsForwarding=1" 
         width="100%" 
@@ -1097,6 +1153,9 @@
         marginheight="0" 
         marginwidth="0" 
         title="African Emerging Scholars Research Network (AESRN)"
+        id="formIframe"
+        style="visibility: hidden;"
+        onload="hideLoading()"
       ></iframe>
     </div>
     
@@ -1260,6 +1319,39 @@
       // Dark mode state
       let isDarkMode = false;
       
+      // Function to hide loading overlay
+      function hideLoading() {
+        console.log('Form iframe loaded');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const iframe = document.getElementById('formIframe');
+        
+        if (loadingOverlay) {
+          loadingOverlay.style.opacity = '0';
+          setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+            if (iframe) {
+              iframe.style.visibility = 'visible';
+            }
+          }, 300);
+        } else if (iframe) {
+          iframe.style.visibility = 'visible';
+        }
+      }
+      
+      // Function to show loading overlay
+      function showLoading() {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const iframe = document.getElementById('formIframe');
+        
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          loadingOverlay.style.opacity = '1';
+        }
+        if (iframe) {
+          iframe.style.visibility = 'hidden';
+        }
+      }
+      
       // Function to update copyright year
       function updateCopyrightYear() {
         const currentYear = new Date().getFullYear();
@@ -1416,7 +1508,8 @@
             // Auto-login user
             currentUserEmail = email;
             currentUserName = email.split('@')[0];
-            showForm();
+            // Load form immediately
+            loadFormAfterLogin();
             return true;
           } else {
             // Session expired, clear it
@@ -1436,17 +1529,43 @@
         localStorage.setItem('aesrnSession', JSON.stringify(sessionData));
       }
       
-      // Function to show form and hide login
-      function showForm() {
+      // Function to load the Tally form
+      function loadTallyForm() {
+        const iframe = document.getElementById('formIframe');
+        if (iframe && iframe.dataset.tallySrc) {
+          console.log('Loading Tally form from:', iframe.dataset.tallySrc);
+          // Set the iframe source to load the form
+          iframe.src = iframe.dataset.tallySrc;
+          // Show loading indicator
+          showLoading();
+        } else {
+          console.error('Tally iframe or data source not found');
+          // Fallback: hide loading after timeout
+          setTimeout(hideLoading, 3000);
+        }
+      }
+      
+      // Function to show form after successful login
+      function loadFormAfterLogin() {
+        console.log('Loading form for user:', currentUserName);
+        
         // Update user name display in footer
         document.getElementById('userNameDisplay').textContent = currentUserName;
         
+        // Hide login container
         document.getElementById('loginContainer').style.display = 'none';
+        
+        // Show form container
         document.getElementById('formContainer').style.display = 'flex';
+        
+        // Show footer
         document.getElementById('siteFooter').style.display = 'flex';
         
         // Create session
         createSession();
+        
+        // Load the Tally form
+        loadTallyForm();
         
         // Start activity tracking
         resetActivityTimer();
@@ -1457,6 +1576,8 @@
       
       // Function to logout
       function logout() {
+        console.log('Logging out user:', currentUserName);
+        
         // Clear session data
         localStorage.removeItem('aesrnSession');
         sessionStorage.clear();
@@ -1471,8 +1592,10 @@
         document.removeEventListener('keydown', trackUserActivity);
         document.removeEventListener('click', trackUserActivity);
         
-        // Reset to login screen
+        // Show login container
         document.getElementById('loginContainer').style.display = 'flex';
+        
+        // Hide form container and footer
         document.getElementById('formContainer').style.display = 'none';
         document.getElementById('siteFooter').style.display = 'none';
         
@@ -1490,6 +1613,20 @@
         document.getElementById('confirmationDialog').style.display = 'none';
         document.getElementById('systemInfoModal').style.display = 'none';
         document.getElementById('usersModal').style.display = 'none';
+        
+        // Reset iframe
+        const iframe = document.getElementById('formIframe');
+        if (iframe) {
+          iframe.src = '';
+          iframe.style.visibility = 'hidden';
+        }
+        
+        // Show loading overlay again for next login
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+          loadingOverlay.style.opacity = '1';
+        }
       }
       
       // Function to handle failed login
@@ -1579,12 +1716,14 @@
         attemptsWarning.style.display = 'none';
         
         if (validateLogin(email, password)) {
+          console.log('Login successful for:', email);
           // Reset failed attempts on successful login
           failedAttempts = 0;
           
-          // Show form
-          showForm();
+          // Load form
+          loadFormAfterLogin();
         } else {
+          console.log('Login failed for:', email);
           handleFailedLogin();
         }
       });
@@ -1631,28 +1770,6 @@
         }
       });
       
-      // Handle authorized users link in system info modal
-      document.getElementById('showUsersListModal').addEventListener('click', function(e) {
-        e.preventDefault();
-        hideSystemInfo(); // Close system info modal first
-        setTimeout(() => {
-          populateUsersList();
-          document.getElementById('usersModal').style.display = 'flex';
-        }, 300);
-      });
-      
-      // Handle authorized users modal
-      document.getElementById('closeModal').addEventListener('click', function() {
-        document.getElementById('usersModal').style.display = 'none';
-      });
-      
-      // Close users modal when clicking outside
-      document.getElementById('usersModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-          this.style.display = 'none';
-        }
-      });
-      
       // Handle keep active button
       document.getElementById('keepActiveButton').addEventListener('click', function() {
         resetActivityTimer();
@@ -1676,6 +1793,8 @@
       
       // Initialize when page loads
       document.addEventListener('DOMContentLoaded', function() {
+        console.log('Page loaded, initializing...');
+        
         // Update copyright year
         updateCopyrightYear();
         
@@ -1684,9 +1803,12 @@
         
         // Check for existing session
         if (checkSession()) {
-          // User is already logged in
+          console.log('Existing session found, auto-logging in...');
+          // User is already logged in, form will load automatically
           return;
         }
+        
+        console.log('No session found, showing login form...');
         
         // Clear any existing session data
         sessionStorage.clear();
@@ -1694,7 +1816,7 @@
         // Auto-focus on email field
         document.getElementById('email').focus();
         
-        // Force login on every page load if no session
+        // Ensure login container is visible
         document.getElementById('loginContainer').style.display = 'flex';
         document.getElementById('formContainer').style.display = 'none';
         document.getElementById('siteFooter').style.display = 'none';
@@ -1702,6 +1824,13 @@
         // Clear form inputs
         document.getElementById('email').value = '';
         document.getElementById('password').value = '';
+        
+        // Pre-load the Tally script
+        if (typeof Tally !== 'undefined') {
+          console.log('Tally script already loaded');
+        } else {
+          console.log('Tally script loading...');
+        }
       });
       
       // Prevent browser password saving
