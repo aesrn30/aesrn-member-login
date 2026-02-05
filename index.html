@@ -1,5 +1,6 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>African Emerging Scholars Research Network (AESRN) | Work Submission System</title>
     <link rel="icon" href="https://raw.githubusercontent.com/aesrn30/aesrn/main/favicon-32x32.png" type="image/png">
@@ -82,25 +83,25 @@
         margin-bottom: 40px;
       }
       
-.login-logo-circle {
-  width: 80px; /* Changed from 120px */
-  height: 80px; /* Changed from 120px */
-  margin: 0 auto 20px auto; /* Reduced bottom margin from 30px to 20px */
-  border-radius: 50%;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-  border: 3px solid white; /* Reduced border from 4px to 3px */
-  box-shadow: 0 6px 20px rgba(26, 35, 126, 0.25); /* Reduced shadow */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
+      .login-logo-circle {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px auto;
+        border-radius: 50%;
+        overflow: hidden;
+        background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+        border: 3px solid white;
+        box-shadow: 0 6px 20px rgba(26, 35, 126, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
 
-.login-logo-circle:hover {
-  transform: scale(1.04); /* Reduced from 1.05 */
-  box-shadow: 0 8px 25px rgba(26, 35, 126, 0.35); /* Reduced shadow */
-}
+      .login-logo-circle:hover {
+        transform: scale(1.04);
+        box-shadow: 0 8px 25px rgba(26, 35, 126, 0.35);
+      }
       
       .logo-circle-image {
         width: 100%;
@@ -650,6 +651,88 @@
         to { opacity: 1; transform: translateY(0); }
       }
       
+      /* Mobile Logout Button Styles */
+      .mobile-logout-button {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 20px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .mobile-logout-button:hover {
+        background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+      }
+      
+      .mobile-logout-button:active {
+        transform: translateY(0);
+      }
+      
+      .mobile-logout-button .mobile-user-name {
+        display: none;
+        margin-right: 8px;
+        font-weight: 500;
+      }
+      
+      /* Mobile Header Info */
+      .mobile-header-info {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: rgba(26, 35, 126, 0.95);
+        color: white;
+        border-radius: 50px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 600;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+      
+      /* Mobile Back to Top Button */
+      .mobile-top-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .mobile-top-button:hover {
+        background: linear-gradient(135deg, #0d155e 0%, #1c236d 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 35, 126, 0.4);
+      }
+      
       /* Responsive design */
       @media (max-width: 768px) {
         .login-container {
@@ -709,6 +792,35 @@
           width: 95%;
           padding: 25px;
         }
+        
+        /* Show mobile logout button and hide footer on mobile */
+        .mobile-logout-button {
+          display: block;
+        }
+        
+        .mobile-header-info {
+          display: block;
+        }
+        
+        .mobile-top-button {
+          display: flex;
+        }
+        
+        /* Hide footer on mobile since we have the mobile buttons */
+        .footer {
+          display: none !important;
+        }
+        
+        /* Adjust form container for mobile */
+        .form-container {
+          min-height: 100vh;
+        }
+        
+        /* Adjust iframe for mobile */
+        #formIframe {
+          top: 0;
+          height: 100vh;
+        }
       }
       
       @media (max-width: 480px) {
@@ -741,6 +853,28 @@
         .confirm-button {
           width: 100%;
         }
+        
+        .mobile-logout-button {
+          padding: 10px 16px;
+          font-size: 12px;
+          top: 10px;
+          right: 10px;
+        }
+        
+        .mobile-header-info {
+          padding: 8px 14px;
+          font-size: 12px;
+          top: 10px;
+          left: 10px;
+        }
+        
+        .mobile-top-button {
+          width: 45px;
+          height: 45px;
+          font-size: 20px;
+          bottom: 15px;
+          right: 15px;
+        }
       }
       
       /* Ensure form iframe is properly sized */
@@ -748,6 +882,24 @@
         width: 100%;
         height: 100%;
         display: block;
+      }
+      
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #1a237e;
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #283593;
       }
     </style>
   </head>
@@ -818,6 +970,23 @@ Enter your login credentials to access the Research Network form and submit your
         <div class="loading-spinner"></div>
         <div class="loading-text">Loading form...</div>
       </div>
+      
+      <!-- Mobile Header Info -->
+      <div class="mobile-header-info" id="mobileHeaderInfo">
+        <span id="mobileUserName"></span>
+      </div>
+      
+      <!-- Mobile Logout Button -->
+      <button class="mobile-logout-button" id="mobileLogoutButton">
+        <span class="mobile-user-name" id="mobileUserNameShort"></span>
+        Logout
+      </button>
+      
+      <!-- Mobile Back to Top Button -->
+      <button class="mobile-top-button" id="mobileTopButton">
+        ↑
+      </button>
+      
       <iframe 
         data-tally-src="https://tally.so/r/dWd6gA?transparentBackground=1&formEventsForwarding=1" 
         width="100%" 
@@ -938,7 +1107,7 @@ Enter your login credentials to access the Research Network form and submit your
       const ACTIVE_SESSIONS_KEY = 'aesrn_active_sessions';
       const CURRENT_SESSION_KEY = 'aesrn_current_session';
       const USER_SESSION_KEY = 'aesrn_user_session';
-      const SHOWN_GREETING_KEY = 'aesrn_shown_greeting'; // NEW: Track if greeting was shown
+      const SHOWN_GREETING_KEY = 'aesrn_shown_greeting';
       
       // Function to generate unique session ID
       function generateSessionId() {
@@ -1027,7 +1196,7 @@ Enter your login credentials to access the Research Network form and submit your
           expiry: Date.now() + SESSION_TIMEOUT,
           name: name,
           loginTime: Date.now(),
-          isFirstLogin: true // NEW: Track if this is first login
+          isFirstLogin: true
         };
         
         saveActiveSessions(sessions);
@@ -1040,7 +1209,7 @@ Enter your login credentials to access the Research Network form and submit your
           sessionId: sessionId,
           loginTime: Date.now(),
           expiry: Date.now() + SESSION_TIMEOUT,
-          isFirstLogin: true // NEW: Track if this is first login
+          isFirstLogin: true
         };
         
         localStorage.setItem(USER_SESSION_KEY, JSON.stringify(userSession));
@@ -1394,12 +1563,33 @@ Enter your login credentials to access the Research Network form and submit your
         return false;
       }
       
+      // Function to update mobile UI elements
+      function updateMobileUI() {
+        const mobileUserName = document.getElementById('mobileUserName');
+        const mobileUserNameShort = document.getElementById('mobileUserNameShort');
+        
+        if (currentUserName) {
+          mobileUserName.textContent = `Logged in as: ${currentUserName}`;
+          mobileUserNameShort.textContent = currentUserName.length > 10 ? 
+            currentUserName.substring(0, 10) + '...' : currentUserName;
+        }
+      }
+      
       // Function to show form after successful login
       function loadFormAfterLogin(showGreeting = true) {
         document.getElementById('userNameDisplay').textContent = currentUserName;
         document.getElementById('loginContainer').style.display = 'none';
         document.getElementById('formContainer').style.display = 'flex';
-        document.getElementById('siteFooter').style.display = 'flex';
+        
+        // Update mobile UI
+        updateMobileUI();
+        
+        // Show/hide footer based on screen size
+        if (window.innerWidth > 768) {
+          document.getElementById('siteFooter').style.display = 'flex';
+        } else {
+          document.getElementById('siteFooter').style.display = 'none';
+        }
         
         startGhanaTimeUpdates();
         loadTallyForm();
@@ -1491,8 +1681,19 @@ Enter your login credentials to access the Research Network form and submit your
         currentUserEmail = '';
         failedAttempts = 0;
         
+        // Update mobile UI
+        updateMobileUI();
+        
         // Show logout notification
         showLogoutNotification();
+      }
+      
+      // Function to handle back to top button
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       }
       
       // Initialize when page loads
@@ -1545,9 +1746,19 @@ Enter your login credentials to access the Research Network form and submit your
         }
       });
       
-      // Handle logout button
+      // Handle logout buttons
       document.getElementById('logoutButton').addEventListener('click', function() {
         document.getElementById('confirmationDialog').style.display = 'flex';
+      });
+      
+      // Handle mobile logout button
+      document.getElementById('mobileLogoutButton').addEventListener('click', function() {
+        document.getElementById('confirmationDialog').style.display = 'flex';
+      });
+      
+      // Handle mobile back to top button
+      document.getElementById('mobileTopButton').addEventListener('click', function() {
+        scrollToTop();
       });
       
       // Handle confirmation dialog buttons
@@ -1587,6 +1798,17 @@ Enter your login credentials to access the Research Network form and submit your
         }
       });
       
+      // Handle window resize to show/hide footer appropriately
+      window.addEventListener('resize', function() {
+        if (currentUserName) {
+          if (window.innerWidth > 768) {
+            document.getElementById('siteFooter').style.display = 'flex';
+          } else {
+            document.getElementById('siteFooter').style.display = 'none';
+          }
+        }
+      });
+      
       // Periodically check session status
       setInterval(function() {
         if (currentUserEmail) {
@@ -1623,6 +1845,16 @@ Enter your login credentials to access the Research Network form and submit your
       // Run cleanup once a day
       setInterval(cleanOldGreetingRecords, 24 * 60 * 60 * 1000);
       cleanOldGreetingRecords(); // Run on initial load
+      
+      // Show/hide back to top button based on scroll position
+      window.addEventListener('scroll', function() {
+        const mobileTopButton = document.getElementById('mobileTopButton');
+        if (window.scrollY > 300) {
+          mobileTopButton.style.display = 'flex';
+        } else {
+          mobileTopButton.style.display = 'none';
+        }
+      });
     </script>
   </body>
 </html>
