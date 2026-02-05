@@ -651,7 +651,7 @@
         to { opacity: 1; transform: translateY(0); }
       }
       
-      /* Mobile Logout Button Styles - FIXED FOR CLICKABILITY */
+      /* Mobile Logout Button Styles */
       .mobile-logout-button {
         position: fixed;
         top: 15px;
@@ -665,12 +665,11 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        z-index: 2000; /* Increased z-index */
+        z-index: 1000;
         display: none;
         box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        pointer-events: auto; /* Ensure button is clickable */
       }
       
       .mobile-logout-button:hover {
@@ -689,7 +688,7 @@
         font-weight: 500;
       }
       
-      /* Mobile Header Info - FIXED FOR CLICKABILITY */
+      /* Mobile Header Info */
       .mobile-header-info {
         position: fixed;
         top: 15px;
@@ -700,19 +699,14 @@
         padding: 10px 18px;
         font-size: 13px;
         font-weight: 600;
-        z-index: 2000; /* Increased z-index */
+        z-index: 1000;
         display: none;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
-        pointer-events: auto; /* Ensure info is clickable */
-        max-width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
       
-      /* Mobile Back to Top Button - FIXED FOR CLICKABILITY */
+      /* Mobile Back to Top Button */
       .mobile-top-button {
         position: fixed;
         bottom: 20px;
@@ -726,12 +720,11 @@
         font-size: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
-        z-index: 2000; /* Increased z-index */
+        z-index: 1000;
         display: none;
         box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);
         justify-content: center;
         align-items: center;
-        pointer-events: auto; /* Ensure button is clickable */
       }
       
       .mobile-top-button:hover {
@@ -823,18 +816,10 @@
           min-height: 100vh;
         }
         
-        /* Adjust iframe for mobile - IMPORTANT: Add padding for mobile buttons */
+        /* Adjust iframe for mobile */
         #formIframe {
           top: 0;
           height: 100vh;
-          padding-top: 70px; /* Space for mobile header buttons */
-          padding-bottom: 80px; /* Space for mobile footer buttons */
-        }
-        
-        /* Ensure form container has proper positioning */
-        .form-container {
-          position: relative;
-          overflow: hidden;
         }
       }
       
@@ -881,7 +866,6 @@
           font-size: 12px;
           top: 10px;
           left: 10px;
-          max-width: 150px;
         }
         
         .mobile-top-button {
@@ -890,12 +874,6 @@
           font-size: 20px;
           bottom: 15px;
           right: 15px;
-        }
-        
-        /* Adjust iframe padding for smaller screens */
-        #formIframe {
-          padding-top: 60px;
-          padding-bottom: 70px;
         }
       }
       
@@ -922,12 +900,6 @@
       
       ::-webkit-scrollbar-thumb:hover {
         background: #283593;
-      }
-      
-      /* For Firefox */
-      * {
-        scrollbar-width: thin;
-        scrollbar-color: #1a237e #f1f1f1;
       }
     </style>
   </head>
@@ -1603,34 +1575,6 @@ Enter your login credentials to access the Research Network form and submit your
         }
       }
       
-      // Function to handle back to top in iframe
-      function scrollIframeToTop() {
-        const iframe = document.getElementById('formIframe');
-        
-        // Try to access iframe content
-        try {
-          // If iframe is loaded and accessible
-          if (iframe.contentWindow) {
-            // Scroll iframe content to top
-            iframe.contentWindow.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
-            
-            // Also try to scroll the iframe element itself
-            iframe.scrollIntoView({
-              behavior: 'smooth'
-            });
-          }
-        } catch (e) {
-          // If we can't access iframe content due to CORS, 
-          // at least scroll the iframe into view
-          iframe.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      }
-      
       // Function to show form after successful login
       function loadFormAfterLogin(showGreeting = true) {
         document.getElementById('userNameDisplay').textContent = currentUserName;
@@ -1686,11 +1630,6 @@ Enter your login credentials to access the Research Network form and submit your
             document.getElementById('loginContainer').style.display = 'flex';
             document.getElementById('formContainer').style.display = 'none';
             document.getElementById('siteFooter').style.display = 'none';
-            
-            // Hide mobile buttons
-            document.getElementById('mobileLogoutButton').style.display = 'none';
-            document.getElementById('mobileHeaderInfo').style.display = 'none';
-            document.getElementById('mobileTopButton').style.display = 'none';
           }
         }, 1000);
       }
@@ -1747,6 +1686,14 @@ Enter your login credentials to access the Research Network form and submit your
         
         // Show logout notification
         showLogoutNotification();
+      }
+      
+      // Function to handle back to top button
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       }
       
       // Initialize when page loads
@@ -1809,21 +1756,9 @@ Enter your login credentials to access the Research Network form and submit your
         document.getElementById('confirmationDialog').style.display = 'flex';
       });
       
-      // Handle mobile back to top button - FIXED
-      document.getElementById('mobileTopButton').addEventListener('click', function(e) {
-        e.stopPropagation(); // Prevent event bubbling
-        e.preventDefault(); // Prevent default behavior
-        
-        // Call the function to scroll iframe to top
-        scrollIframeToTop();
-        
-        // Add visual feedback
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          this.style.transform = 'scale(1)';
-        }, 200);
-        
-        return false;
+      // Handle mobile back to top button
+      document.getElementById('mobileTopButton').addEventListener('click', function() {
+        scrollToTop();
       });
       
       // Handle confirmation dialog buttons
@@ -1868,18 +1803,8 @@ Enter your login credentials to access the Research Network form and submit your
         if (currentUserName) {
           if (window.innerWidth > 768) {
             document.getElementById('siteFooter').style.display = 'flex';
-            document.getElementById('mobileLogoutButton').style.display = 'none';
-            document.getElementById('mobileHeaderInfo').style.display = 'none';
-            document.getElementById('mobileTopButton').style.display = 'none';
           } else {
             document.getElementById('siteFooter').style.display = 'none';
-            document.getElementById('mobileLogoutButton').style.display = 'block';
-            document.getElementById('mobileHeaderInfo').style.display = 'block';
-            
-            // Show back to top button if scrolled
-            if (window.scrollY > 300) {
-              document.getElementById('mobileTopButton').style.display = 'flex';
-            }
           }
         }
       });
@@ -1924,33 +1849,12 @@ Enter your login credentials to access the Research Network form and submit your
       // Show/hide back to top button based on scroll position
       window.addEventListener('scroll', function() {
         const mobileTopButton = document.getElementById('mobileTopButton');
-        if (currentUserName && window.innerWidth <= 768) {
-          if (window.scrollY > 300) {
-            mobileTopButton.style.display = 'flex';
-          } else {
-            mobileTopButton.style.display = 'none';
-          }
+        if (window.scrollY > 300) {
+          mobileTopButton.style.display = 'flex';
+        } else {
+          mobileTopButton.style.display = 'none';
         }
       });
-      
-      // Add click event to ensure mobile buttons are clickable
-      document.addEventListener('click', function(e) {
-        // If clicking on mobile logout button
-        if (e.target.closest('#mobileLogoutButton')) {
-          e.stopPropagation();
-          e.preventDefault();
-          document.getElementById('confirmationDialog').style.display = 'flex';
-          return false;
-        }
-        
-        // If clicking on mobile top button
-        if (e.target.closest('#mobileTopButton')) {
-          e.stopPropagation();
-          e.preventDefault();
-          scrollIframeToTop();
-          return false;
-        }
-      }, true); // Use capture phase to ensure we catch the event
     </script>
   </body>
 </html>
